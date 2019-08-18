@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "tslint:latest",
+    "tslint-react",
+    "tslint-react-hooks"
+  ],
+  "linterOptions": { "exclude": ["node_modules/**/*.ts"] },
+  "compilerOptions": { "plugins": [{"name": "tslint"}] },
+  "rules": {
+    "react-hooks-nesting": "error",
+    "await-promise": false,
+    "deprecation": false,
+    "no-floating-promises": false,
+    "no-unnecessary-qualifier": false,
+    "no-unnecessary-type-assertion": false,
+    "strict-type-predicates": false,
+    "align": [
+      true,
+      "statements"
+    ],
+    "space-before-function-paren": false,
+    "one-variable-per-declaration": false,
+    "semicolon": [
+      true,
+      "always"
+    ]
+  }
+}
+  
