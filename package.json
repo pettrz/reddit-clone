@@ -12,6 +12,7 @@
     "typescript": "^3.5.3"
   },
   "scripts": {
+    "format": "tslint --config tslint.json 'src/**/*.{ts,tsx}' --fix && prettier \"src/**/*.{ts,tsx}\" --write",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
