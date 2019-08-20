@@ -1,15 +1,15 @@
 import React from 'react';
 import './App.scss';
+import Post from './components/Post';
 
-function App() {
-  return (
-    <div className="wrapper">
-      <header>Header content</header>
-      <aside>Aside content</aside>
-      <main>Main content</main>
-      <footer>Footer content</footer>
-    </div>
-  );
+export default class App extends React.Component<any, any> {
+
+  render() {
+    return (
+      <div className="wrapper">
+        <header><h1>Reddit clone</h1></header>
+        <main><Post/></main>
+      </div>
+    );
+  }
 }
-
-export default App;

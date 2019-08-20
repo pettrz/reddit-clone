@@ -24,7 +24,7 @@ h1,h2,h3,h4,h5 {
     ". header ."
     "side content ."
     "footer footer footer";
-
+  
   grid-template-columns: 250px 1fr 250px;
   grid-template-rows: auto 1fr auto;
   grid-gap: 10px;
@@ -34,18 +34,17 @@ h1,h2,h3,h4,h5 {
 
 header {
   grid-area: header;
+  margin: 100px;
 }
 
 main {
   grid-area: content;
+  @extend %flex;
   @include flex-direction(column);
-  @include align-items(center);
 }
 
 aside {
   grid-area: side;
-  @include flex-direction(column);
-  @include align-items(center);
 }
 
 footer {

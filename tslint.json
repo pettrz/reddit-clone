@@ -10,6 +10,7 @@
   "rules": {
     "react-hooks-nesting": "error",
     "await-promise": false,
+    "member-access": false,
     "deprecation": false,
     "no-floating-promises": false,
     "no-unnecessary-qualifier": false,
