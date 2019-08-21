@@ -1,10 +1,11 @@
 import React from 'react';
 import './Post.scss';
 
-const Post = () => {
+const Post = ({ data }: any) => {
+  console.log(data);
   return (
-    <div className='post row'>
-        Post
+    <div className="post row">
+      Post
     </div>
   );
 };

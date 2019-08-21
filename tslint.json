@@ -9,8 +9,10 @@
   "compilerOptions": { "plugins": [{"name": "tslint"}] },
   "rules": {
     "react-hooks-nesting": "error",
+    "no-console": false,
     "await-promise": false,
     "member-access": false,
+    "object-literal-sort-keys": false,
     "deprecation": false,
     "no-floating-promises": false,
     "no-unnecessary-qualifier": false,
