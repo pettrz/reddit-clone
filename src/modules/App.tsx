@@ -6,10 +6,10 @@ import Post from './components/Post';
 export default class App extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
-    
+
     this.state = {
       kind: '',
-      data: []
+      data: [],
     };
   }
   componentDidMount() {
@@ -18,19 +18,21 @@ export default class App extends React.Component<any, any> {
       .then(({ data }) => {
         console.log(data);
         this.setState({
-          kind: data.kind, 
-          data: data.data.children
+          kind: data.kind,
+          data: data.data.children,
         });
       })
-      .catch((error) => console.log(error));
+      .catch(error => console.log(error));
   }
   render() {
     return (
       <div className="wrapper">
-        <header><h1>Reddit clone</h1></header>
+        <header>
+          <h1>Reddit clone</h1>
+        </header>
         <main>
           {this.state.data.map((data: any, i: any) => (
-            <Post data={data} key={i}/>
+            <Post data={data} key={i} />
           ))}
         </main>
       </div>

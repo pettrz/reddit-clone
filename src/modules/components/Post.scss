@@ -4,5 +4,13 @@
   box-shadow: 3px 3px 0 0 #403D3D;
   border-radius: 6px;
   padding: 30px;
-  margin-bottom: 20px
-}
+  margin-bottom: 20px;
+
+  .post__thumbnail {
+    width: 200px
+    img {
+      height: auto;
+      width: 100%
+    }
+  }
+};
