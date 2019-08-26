@@ -56,6 +56,11 @@ footer {
   @include flex-direction(row);
 }
 
+.col {
+  @extend %flex;
+  @include flex-direction(column);
+}
+
 .justify-center {
   @extend %flex;
   @include justify-content(center)
