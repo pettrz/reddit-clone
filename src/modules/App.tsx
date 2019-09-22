@@ -1,36 +1,39 @@
 import axios from 'axios';
-// import _ from 'lodash';
-// å 
 import queryString from 'query-string';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './App.scss';
 import Post from './components/Post';
 
-export const App = () => {
+export const App = ({ location }: any) => {
+
+  const getParamsFromUrl = (urlString: string) => {
+    const uriParams = queryString.parse(urlString);
+    return uriParams;
+  };
+
   const [postData, setPostData] = useState([]);
-  const [after, setAfter] = useState('');
-  const [afterQuery, setAfterQuery] = useState('');
+  const [before, setBefore] = useState(undefined);
+  const [after, setAfter] = useState(undefined);
 
   useEffect(() => {
-    let ignore = false;
-    const query = {
-      after
-    };
-    console.log(queryString.stringify(query));
-    async function fetchData() {
-      const result = await axios(`https://www.reddit.com/r/reactjs.json?${queryString.stringify(query)}`);
-      if (!ignore) { 
+    
+    function fetchData() {
+      const searchParams = getParamsFromUrl(location.search);
+
+      axios(`https://www.reddit.com/r/reactjs.json?count=25&${queryString.stringify({ ...searchParams })}`)
+      .then(result => {
         setPostData(result.data.data.children);
-        setAfterQuery(result.data.data.after);
-      }
+        setAfter(result.data.data.after);
+        setBefore(result.data.data.before);
+      });
     }
 
     fetchData();
-    return () => { ignore = true; };
-  }, [after]);
 
-  const nextPage = () => setAfter(afterQuery);
+  }, [location]);
   
+
   return (
     <div className="wrapper">
       <header>
@@ -40,12 +43,15 @@ export const App = () => {
         {postData.map((data: [], i: number) => (
           <Post data={data} key={i} />
         ))}
-        <button onClick={nextPage}>Next</button>
+        { before &&
+          <Link to={`/r/reactjs?${queryString.stringify({ before })}`}>Prev</Link>
+        }
+        { after &&
+          <Link to={`/r/reactjs?${queryString.stringify({ after })}`}>Next</Link>
+        }
       </main>
     </div>
   );
 };
 
 export default App;
-
-
