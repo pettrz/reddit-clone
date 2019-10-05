@@ -1,0 +1,18 @@
+@import '../../styles/_variables.scss';
+
+.main-header {
+  @extend %flex;
+  @include align-items(space-between);
+  &__title {
+    h1 {
+      color: #2d83f5;
+      text-transform: uppercase;
+    }
+  }
+  &__options {
+    h1 {
+      color: #2d83f5;
+      text-transform: uppercase;
+    }
+  }
+}
