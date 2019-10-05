@@ -7,7 +7,6 @@ import Header from './components/Header';
 import Post from './components/Post';
 
 export const App = ({ history, location }: any) => {
-
   const getParamsFromUrl = (urlString: string) => {
     const uriParams = queryString.parse(urlString);
     return uriParams;
@@ -21,48 +20,61 @@ export const App = ({ history, location }: any) => {
   useEffect(() => {
     const searchParams = getParamsFromUrl(location.search);
     const params = {
-      ...searchParams
+      ...searchParams,
     };
-
 
     const fetchData = async () => {
-  
-      await axios.get (`https://www.reddit.com/r/reactjs.json?${queryString.stringify(params)}`)
-      .then(result => {
-        setPostData(result.data.data.children);
-        setAfter(result.data.data.after);
-        setBefore(result.data.data.before);
-  
-      });
-
+      await axios
+        .get(
+          `https://www.reddit.com/r/reactjs.json?${queryString.stringify(
+            params,
+          )}`,
+        )
+        .then(result => {
+          setPostData(result.data.data.children);
+          setAfter(result.data.data.after);
+          setBefore(result.data.data.before);
+        });
     };
     fetchData();
+  }, [location.search]);
 
-  }, [history.location]);
-
-  
   const countHandler = (e: any) => {
     const { value } = e.target;
     const searchParams = getParamsFromUrl(location.search);
     setCount(value);
-    history.push(`/r/reactjs?${queryString.stringify({ ...searchParams, count: value })}`);
+    history.push(
+      `/r/reactjs?${queryString.stringify({ ...searchParams, count: value })}`,
+    );
   };
-  console.log(before);
 
   return (
     <div className="wrapper">
-
-      <Header countHandler={countHandler}/>
+      <Header countHandler={countHandler} />
       <main>
         {postData.map((data: [], i: number) => (
           <Post data={data} key={i} />
         ))}
-        { before &&
-          <Link to={`/r/reactjs?${queryString.stringify({ count: count || 25, before })}`}>Prev</Link>
-        }
-        { after &&
-          <Link to={`/r/reactjs?${queryString.stringify({ count: count || 25, after })}`}>Next</Link>
-        }
+        {before && (
+          <Link
+            to={`/r/reactjs?${queryString.stringify({
+              count: count || 25,
+              before,
+            })}`}
+          >
+            Prev
+          </Link>
+        )}
+        {after && (
+          <Link
+            to={`/r/reactjs?${queryString.stringify({
+              count: count || 25,
+              after,
+            })}`}
+          >
+            Next
+          </Link>
+        )}
       </main>
     </div>
   );

@@ -1,16 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.scss';
 
 const Header = ({ countHandler }: { countHandler: (e: any) => void }) => {
   return (
-    <header className='main-header'>
-      <div className='main-header__menu'>
-        <h1>Reddit Clone</h1>
+    <header className="main-header">
+      <div className="main-header__title">
+        <Link to='/r/reactjs'><h1>Reddit Clone</h1></Link>
       </div>
-      <div className='main-header__options'>
-        <button value="25" onClick={countHandler}>25</button>
-        <button value="50" onClick={countHandler}>50</button>
-        <button value="75" onClick={countHandler}>75</button>
+      <div className="main-header__options">
+        <button className="main-header__options__btn" value="25" onClick={countHandler}>
+          25
+        </button>
+        <button className="main-header__options__btn" value="50" onClick={countHandler}>
+          50
+        </button>
+        <button className="main-header__options__btn" value="75" onClick={countHandler}>
+          75
+        </button>
       </div>
     </header>
   );

@@ -2,7 +2,8 @@
 
 .main-header {
   @extend %flex;
-  @include align-items(space-between);
+  @include justify-content(space-between);
+  margin: 10vh 0 0 50px;
   &__title {
     h1 {
       color: #2d83f5;
@@ -10,9 +11,16 @@
     }
   }
   &__options {
-    h1 {
-      color: #2d83f5;
-      text-transform: uppercase;
+    @extend %flex;
+    @include align-items(center); 
+    &__btn {
+      background-color: transparent;
+      margin: 0 5px;
+      padding: 5px;
+      border: 0;
+      &:hover {
+        background-color: #2d83f5
+      }
     }
   }
 }

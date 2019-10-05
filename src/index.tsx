@@ -6,7 +6,8 @@ import App from './modules/App';
 
 ReactDOM.render(
   <Router>
-    <Route path='/r/reactjs' component={App}/>
+    <Route path="/r/reactjs" component={App} />
     <Redirect exact={true} from="/" to="/r/reactjs" />
-  </Router>
-, document.getElementById('root'));
+  </Router>,
+  document.getElementById('root'),
+);
