@@ -26,12 +26,7 @@ const Post = ({ data }: any) => {
       <div className="post__container row">
         <div className="post__container__date-posted">{creationDate}</div>
         <div className="post__container__thumbnail">
-          <img
-            height="80"
-            width="80"
-            src={thumbnailDisplay}
-            alt=''
-          />
+          <img height="80" width="80" src={thumbnailDisplay} alt="" />
         </div>
         <div className="post__container__body">
           <div className="post__container__body__upper">

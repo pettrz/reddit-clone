@@ -16,7 +16,6 @@ const Header = ({ limitHandler, subredditHandler }: IHeaderProps) => {
   };
   const onSubmitSubreddit = (e: any) => {
     e.preventDefault(); 
-    console.log(subreddit);
     subredditHandler(subreddit);
   };
 
@@ -39,24 +38,24 @@ const Header = ({ limitHandler, subredditHandler }: IHeaderProps) => {
             placeholder='Enter subreddit'
             onChange={onChangeSubreddit}
           />
-          <button type="button">Submit</button>
+          <button type="submit">Submit</button>
         </form>
         <button
-          className={cn('main-header__options__btn', {['btn--selected']: limit === '5' })}
+          className={cn('main-header__options__btn', {'btn--selected': limit === '5' })}
           value="5"
           onClick={privateLimitHandler}
         >
           5
         </button>
         <button
-          className={cn('main-header__options__btn', {['btn--selected']: limit === '10' })}
+          className={cn('main-header__options__btn', {'btn--selected': limit === '10' })}
           value="10"
           onClick={privateLimitHandler}
         >
           10
         </button>
         <button
-          className={cn('main-header__options__btn', {['btn--selected']: limit === '25' })}
+          className={cn('main-header__options__btn', {'btn--selected': limit === '25' })}
           value="25"
           onClick={privateLimitHandler}
         >

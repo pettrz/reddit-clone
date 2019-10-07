@@ -16,9 +16,12 @@ export const App = ({ history, location }: any) => {
   const [before, setBefore] = useState(undefined);
   const [after, setAfter] = useState(undefined);
   const [limit, setLimit] = useState(undefined);
+  const [pageError, setPageError] = useState(false);
+
 
 
   useEffect(() => {
+    setPageError(false);
     const searchParams = getParamsFromUrl(location.search);
     const params = {
       ...searchParams,
@@ -26,16 +29,16 @@ export const App = ({ history, location }: any) => {
     const fetchData = async () => {
       await axios
         .get(
-          `https://www.reddit.com${location.pathname}.json?${queryString.stringify(
-            params,
-          )}`,
+          `https://www.reddit.com${
+            location.pathname
+          }.json?${queryString.stringify(params)}`,
         )
         .then(result => {
           const { data } = result.data;
           setPostData(data.children);
           setAfter(data.after);
           setBefore(data.before);
-        });
+        }).catch(err => setPageError(err));
     };
     fetchData();
   }, [location]);
@@ -52,7 +55,6 @@ export const App = ({ history, location }: any) => {
   const subredditHandler = (name: string) => {
     const searchParams = getParamsFromUrl(location.searchParams);
     const pathname = `/r/${name}`;
-    console.log(pathname);
     history.push(
       `${pathname}?${queryString.stringify({ ...searchParams, limit })}`,
     );
@@ -61,10 +63,17 @@ export const App = ({ history, location }: any) => {
     <div className="wrapper">
       <Header limitHandler={limitHandler} subredditHandler={subredditHandler} />
       <main>
-        {postData.map((data: [], i: number) => (
-          <Post data={data} key={i} />
-        ))}
-        {before && (
+        {pageError ? 
+          <div className='subreddit-error'>
+            <h3>Something went wrong :(</h3>
+            <p>This subreddit probably doesn't exist.</p>
+            <Link to='/r/reactjs' className='subreddit-error__btn'>Go home</Link>
+          </div> 
+          : postData.map((data: [], i: number) => (
+            <Post data={data} key={i} />
+          ))
+        }
+        {before && !pageError && (
           <Link
             to={`/r/reactjs?${queryString.stringify({
               limit: limit || 25,
@@ -74,7 +83,7 @@ export const App = ({ history, location }: any) => {
             Prev
           </Link>
         )}
-        {after && (
+        {after && !pageError && (
           <Link
             to={`/r/reactjs?${queryString.stringify({
               limit: limit || 25,
