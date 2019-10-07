@@ -15,18 +15,18 @@ export const App = ({ history, location }: any) => {
   const [postData, setPostData] = useState([]);
   const [before, setBefore] = useState(undefined);
   const [after, setAfter] = useState(undefined);
-  const [count, setCount] = useState(undefined);
+  const [limit, setLimit] = useState(undefined);
+
 
   useEffect(() => {
     const searchParams = getParamsFromUrl(location.search);
     const params = {
       ...searchParams,
     };
-
     const fetchData = async () => {
       await axios
         .get(
-          `https://www.reddit.com/r/reactjs.json?${queryString.stringify(
+          `https://www.reddit.com${location.pathname}.json?${queryString.stringify(
             params,
           )}`,
         )
@@ -38,19 +38,28 @@ export const App = ({ history, location }: any) => {
         });
     };
     fetchData();
-  }, [location.search]);
+  }, [location]);
 
-  const countHandler = (e: any) => {
+  const limitHandler = (e: any) => {
     const { value } = e.target;
     const searchParams = getParamsFromUrl(location.search);
-    setCount(value);
+    setLimit(value);
     history.push(
-      `/r/reactjs?${queryString.stringify({ ...searchParams, count: value })}`,
+      `/r/reactjs?${queryString.stringify({ ...searchParams, limit: value })}`,
+    );
+  };
+
+  const subredditHandler = (name: string) => {
+    const searchParams = getParamsFromUrl(location.searchParams);
+    const pathname = `/r/${name}`;
+    console.log(pathname);
+    history.push(
+      `${pathname}?${queryString.stringify({ ...searchParams, limit })}`,
     );
   };
   return (
     <div className="wrapper">
-      <Header countHandler={countHandler} />
+      <Header limitHandler={limitHandler} subredditHandler={subredditHandler} />
       <main>
         {postData.map((data: [], i: number) => (
           <Post data={data} key={i} />
@@ -58,7 +67,7 @@ export const App = ({ history, location }: any) => {
         {before && (
           <Link
             to={`/r/reactjs?${queryString.stringify({
-              count: count || 25,
+              limit: limit || 25,
               before,
             })}`}
           >
@@ -68,7 +77,7 @@ export const App = ({ history, location }: any) => {
         {after && (
           <Link
             to={`/r/reactjs?${queryString.stringify({
-              count: count || 25,
+              limit: limit || 25,
               after,
             })}`}
           >

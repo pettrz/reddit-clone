@@ -26,11 +26,20 @@ const Post = ({ data }: any) => {
       <div className="post__container row">
         <div className="post__container__date-posted">{creationDate}</div>
         <div className="post__container__thumbnail">
-          <img height='80' width='80' src={thumbnailDisplay} alt={'Thumbnail for' + title} />
+          <img
+            height="80"
+            width="80"
+            src={thumbnailDisplay}
+            alt=''
+          />
         </div>
         <div className="post__container__body">
           <div className="post__container__body__upper">
-            <a href={`http://www.reddit.com${permaLink}`} target="_blank" rel="noopener noreferrer">
+            <a
+              href={`http://www.reddit.com${permaLink}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {title}
             </a>
             <div className="post__container__body__upper__author">
