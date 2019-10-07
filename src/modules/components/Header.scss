@@ -8,18 +8,21 @@
     h1 {
       color: #2d83f5;
       text-transform: uppercase;
+      line-height: 39px;
     }
   }
   &__options {
     @extend %flex;
     @include align-items(center); 
+    margin-top: auto;
     &__btn {
-      background-color: transparent;
+      background-color: #c5c2c2;
       margin: 0 5px;
       padding: 5px;
       border: 0;
       &:hover {
-        background-color: #2d83f5
+        background-color: #2d83f5;
+        color: #FFFFFF;
       }
     }
   }

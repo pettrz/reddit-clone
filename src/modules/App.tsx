@@ -31,9 +31,10 @@ export const App = ({ history, location }: any) => {
           )}`,
         )
         .then(result => {
-          setPostData(result.data.data.children);
-          setAfter(result.data.data.after);
-          setBefore(result.data.data.before);
+          const { data } = result.data;
+          setPostData(data.children);
+          setAfter(data.after);
+          setBefore(data.before);
         });
     };
     fetchData();
@@ -47,7 +48,6 @@ export const App = ({ history, location }: any) => {
       `/r/reactjs?${queryString.stringify({ ...searchParams, count: value })}`,
     );
   };
-
   return (
     <div className="wrapper">
       <Header countHandler={countHandler} />
