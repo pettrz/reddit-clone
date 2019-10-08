@@ -3,6 +3,7 @@ import queryString from 'query-string';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './App.scss';
+import { ButtonLink } from './components/Button';
 import Header from './components/Header';
 import Post from './components/Post';
 
@@ -17,8 +18,6 @@ export const App = ({ history, location }: any) => {
   const [after, setAfter] = useState(undefined);
   const [limit, setLimit] = useState(undefined);
   const [pageError, setPageError] = useState(false);
-
-
 
   useEffect(() => {
     setPageError(false);
@@ -38,7 +37,8 @@ export const App = ({ history, location }: any) => {
           setPostData(data.children);
           setAfter(data.after);
           setBefore(data.before);
-        }).catch(err => setPageError(err));
+        })
+        .catch(err => setPageError(err));
     };
     fetchData();
   }, [location]);
@@ -63,16 +63,17 @@ export const App = ({ history, location }: any) => {
     <div className="wrapper">
       <Header limitHandler={limitHandler} subredditHandler={subredditHandler} />
       <main>
-        {pageError ? 
-          <div className='subreddit-error'>
+        {pageError ? (
+          <div className="subreddit-error">
             <h3>Something went wrong :(</h3>
             <p>This subreddit probably doesn't exist.</p>
-            <Link to='/r/reactjs' className='subreddit-error__btn'>Go home</Link>
-          </div> 
-          : postData.map((data: [], i: number) => (
-            <Post data={data} key={i} />
-          ))
-        }
+            <ButtonLink to='/r/reactjs' type='home'>
+              Go home
+            </ButtonLink>
+          </div>
+        ) : (
+          postData.map((data: [], i: number) => <Post data={data} key={i} />)
+        )}
         {before && !pageError && (
           <Link
             to={`/r/reactjs?${queryString.stringify({
