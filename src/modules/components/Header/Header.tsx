@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from './Button';
+import { Button } from '../Button/Button';
 import './Header.scss';
 
 interface IHeaderProps {
@@ -38,8 +38,8 @@ const Header = ({ limitHandler, subredditHandler }: IHeaderProps) => {
             onChange={onChangeSubreddit}
           />
         </form>
-        {[5,10,25].map((v: number) => (
-          <Button 
+        {[5, 10, 25].map((v: number) => (
+          <Button
             key={v}
             value={v}
             selected={v === limit}

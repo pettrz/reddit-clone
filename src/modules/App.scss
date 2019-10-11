@@ -22,7 +22,7 @@ a {
 
 .wrapper {
   font-family: sans-serif;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
   text-align: center;
   display: grid;
   grid-template-areas:

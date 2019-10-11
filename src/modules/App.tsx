@@ -1,11 +1,10 @@
 import axios from 'axios';
 import queryString from 'query-string';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import './App.scss';
-import { ButtonLink } from './components/Button';
-import Header from './components/Header';
-import Post from './components/Post';
+import { ButtonLink } from './components/Button/Button';
+import Header from './components/Header/Header';
+import Post from './components/Post/Post';
 
 export const App = ({ history, location }: any) => {
   const getParamsFromUrl = (urlString: string) => {
@@ -67,33 +66,37 @@ export const App = ({ history, location }: any) => {
           <div className="subreddit-error">
             <h3>Something went wrong :(</h3>
             <p>This subreddit probably doesn't exist.</p>
-            <ButtonLink to='/r/reactjs' type='home'>
+            <ButtonLink to="/r/reactjs" type="home">
               Go home
             </ButtonLink>
           </div>
         ) : (
           postData.map((data: [], i: number) => <Post data={data} key={i} />)
         )}
+        <div>
         {before && !pageError && (
-          <Link
+          <ButtonLink
+            type='pagination'
             to={`/r/reactjs?${queryString.stringify({
               limit: limit || 25,
               before,
             })}`}
           >
             Prev
-          </Link>
+          </ButtonLink>
         )}
         {after && !pageError && (
-          <Link
+          <ButtonLink
+            type='pagination'
             to={`/r/reactjs?${queryString.stringify({
               limit: limit || 25,
               after,
             })}`}
           >
             Next
-          </Link>
+          </ButtonLink>
         )}
+        </div>
       </main>
     </div>
   );

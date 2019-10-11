@@ -5,7 +5,7 @@ import './Button.scss';
 
 interface IButtonGlobalProps {
   children: React.ReactNode;
-  type?: 'home' | 'limit';
+  type?: 'home' | 'limit' | 'pagination';
 }
 
 interface IButtonProps {
@@ -18,11 +18,16 @@ interface IButtonLinkProps {
   to: string;
 }
 
-const Button = ({ children, type, selected, onClick }: IButtonProps & IButtonGlobalProps) => {
+const Button = ({
+  children,
+  type,
+  selected,
+  onClick,
+}: IButtonProps & IButtonGlobalProps) => {
   const BtnClasses = cn(
-    'btn', 
-    {['btn--' + type]: type},
-    { 'btn--selected': selected }
+    'btn',
+    { ['btn--' + type]: type },
+    { 'btn--selected': selected },
   );
   return (
     <button className={BtnClasses} onClick={onClick}>
@@ -31,8 +36,12 @@ const Button = ({ children, type, selected, onClick }: IButtonProps & IButtonGlo
   );
 };
 
-const ButtonLink = ({ children, to, type }: IButtonLinkProps & IButtonGlobalProps) => {
-  const BtnClasses = cn('btn', {['btn--' + type]: type});
+const ButtonLink = ({
+  children,
+  to,
+  type,
+}: IButtonLinkProps & IButtonGlobalProps) => {
+  const BtnClasses = cn('btn', { ['btn--' + type]: type });
   return (
     <Link to={to} className={BtnClasses}>
       {children}
@@ -40,7 +49,4 @@ const ButtonLink = ({ children, to, type }: IButtonLinkProps & IButtonGlobalProp
   );
 };
 
-export {
-  Button,
-  ButtonLink
-};
+export { Button, ButtonLink };
