@@ -72,7 +72,7 @@ const Post = ({ data }: any) => {
                 />
                 <span>EXPAND</span>
               </button>
-              <Link className="post__container__body__lower__btn" tabIndex={0}>
+              <Link to="/" className="post__container__body__lower__btn" tabIndex={0}>
                 <FontAwesomeIcon
                   title="Toggle selftext"
                   icon="comment"

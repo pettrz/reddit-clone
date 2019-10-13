@@ -9,17 +9,21 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import './index.scss';
 import App from './modules';
+import { store } from './redux/store';
 
 library.add(fab, faArrowDown, faAngleDown, faBookOpen, faComment, faComments);
 
 ReactDOM.render(
-  <Router>
-    <Route path="/r/:subreddit" component={App} />
-    <Route path="/r/:subreddit/comments/:id/:title" component={App} />
-    <Redirect exact={true} from="/" to="/r/reactjs" />
-  </Router>,
-  document.getElementById('root'),
+  <Provider store={store}>
+    <Router>
+      <Route path="/r/:subreddit" component={App} />
+      <Route path="/r/:subreddit/comments/:id/:title" component={App} />
+      <Redirect exact={true} from="/" to="/r/reactjs" />
+    </Router>
+  </Provider>,
+  document.getElementById('root') as HTMLElement,
 );

@@ -6,7 +6,7 @@ import { ButtonLink } from './components/Button/Button';
 import Header from './components/Header/Header';
 import Post from './components/Post/Post';
 
-export const App = ({ history, location }: any) => {
+export const App = ({ history, location, subreddit, fetchSubreddit }: any) => {
   const getParamsFromUrl = (urlString: string) => {
     const uriParams = queryString.parse(urlString);
     return uriParams;
@@ -24,6 +24,11 @@ export const App = ({ history, location }: any) => {
     const params = {
       ...searchParams,
     };
+    console.log(subreddit);
+    fetchSubreddit({
+      sub: location.pathname, 
+      params: queryString.stringify(params)
+    });
     const fetchData = async () => {
       await axios
         .get(
@@ -32,6 +37,7 @@ export const App = ({ history, location }: any) => {
           }.json?${queryString.stringify(params)}`,
         )
         .then(result => {
+          // tslint:disable-next-line: no-shadowed-variable
           const { data } = result.data;
           setPostData(data.children);
           setAfter(data.after);
@@ -58,6 +64,7 @@ export const App = ({ history, location }: any) => {
       `${pathname}?${queryString.stringify({ ...searchParams, limit })}`,
     );
   };
+  console.log(subreddit);
   return (
     <div className="wrapper">
       <Header limitHandler={limitHandler} subredditHandler={subredditHandler} />

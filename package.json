@@ -34,8 +34,9 @@
     "react-scripts": "3.1.1",
     "redux": "^4.0.4",
     "redux-actions": "^2.6.5",
-    "redux-observable": "^1.2.0",
+    "redux-observable": "^0.17.0",
     "redux-observable-adapter-most": "0.0.2",
+    "rxjs": "^5.5.6",
     "typescript": "^3.5.3"
   },
   "husky": {
