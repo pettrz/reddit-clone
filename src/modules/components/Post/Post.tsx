@@ -61,12 +61,24 @@ const Post = ({ data }: any) => {
               </div>
             </div>
             <div className="post__container__body__lower">
-              <button className='post__container__body__lower__btn' onClick={toggleSelftext}>
-                <FontAwesomeIcon title='Toggle selftext' icon='book-open' size='sm'/> 
+              <button
+                className="post__container__body__lower__btn"
+                onClick={toggleSelftext}
+              >
+                <FontAwesomeIcon
+                  title="Toggle selftext"
+                  icon="book-open"
+                  size="sm"
+                />
                 <span>EXPAND</span>
               </button>
-              <Link className='post__container__body__lower__btn' tabIndex={0}>
-                <FontAwesomeIcon title='Toggle selftext' icon='comment' flip="horizontal" size='sm'/> 
+              <Link className="post__container__body__lower__btn" tabIndex={0}>
+                <FontAwesomeIcon
+                  title="Toggle selftext"
+                  icon="comment"
+                  flip="horizontal"
+                  size="sm"
+                />
                 <span>{numComments} Comments</span>
               </Link>
             </div>

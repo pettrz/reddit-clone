@@ -3,4 +3,7 @@ import { App } from './App';
 
 const mapStateToProps = (state: any) => state;
 const mapDispatchToProps = {};
-export default connect(mapStateToProps, mapDispatchToProps) (App as any);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App as any);
