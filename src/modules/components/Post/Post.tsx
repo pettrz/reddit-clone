@@ -1,9 +1,10 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import _ from 'lodash';
 import 'moment-timezone';
 import React, { useState } from 'react';
 import Markdown from 'react-markdown';
 import Moment from 'react-moment';
-import { Button } from '../Button/Button';
+import { Link } from 'react-router-dom';
 import './Post.scss';
 
 const Post = ({ data }: any) => {
@@ -19,7 +20,7 @@ const Post = ({ data }: any) => {
   const created = _.get(data.data, 'created', 0);
   const score = _.get(data.data, 'score', 0);
   const numComments = _.get(data.data, 'num_comments', 0);
-  const creationDate = new Date(created*1000).toDateString();
+  const creationDate = new Date(created * 1000).toDateString();
   const selfText = _.get(data.data, 'selftext', '');
   const author = _.get(data.data, 'author', '');
   const permaLink = _.get(data.data, 'permalink', '');
@@ -36,7 +37,12 @@ const Post = ({ data }: any) => {
         </div>
         <div className="post__container row">
           <div className="post__container__date-posted">
-            <Moment date={creationDate} fromNow={true} locale='sv' tz="Europe/Stockholm"/>
+            <Moment
+              date={creationDate}
+              fromNow={true}
+              locale="sv"
+              tz="Europe/Stockholm"
+            />
           </div>
           <div className="post__container__thumbnail">
             <img height="80" width="80" src={thumbnailDisplay} alt="" />
@@ -54,20 +60,31 @@ const Post = ({ data }: any) => {
                 Submitted by {author}
               </div>
             </div>
-            <div className="post__container__body__lower__comments">
-              {numComments} Comments
+            <div className="post__container__body__lower">
+              <button className='post__container__body__lower__btn' onClick={toggleSelftext}>
+                <FontAwesomeIcon title='Toggle selftext' icon='book-open' size='sm'/> 
+                <span>EXPAND</span>
+              </button>
+              <Link className='post__container__body__lower__btn' tabIndex={0}>
+                <FontAwesomeIcon title='Toggle selftext' icon='comment' flip="horizontal" size='sm'/> 
+                <span>{numComments} Comments</span>
+              </Link>
             </div>
-            <Button onClick={toggleSelftext}>
-              Expand
-            </Button>
           </div>
         </div>
       </div>
-      { selftextExpand && 
-        <div className='selftext'>
-          <p><Markdown source={selfText} /></p>
+      {selftextExpand && (
+        <div className="selftext">
+          <div className="selftext__title">
+            <h1>
+              <i>{author} says...</i>
+            </h1>
+          </div>
+          <div className="selftext__body">
+            <Markdown source={selfText} />
+          </div>
         </div>
-      }
+      )}
     </div>
   );
 };

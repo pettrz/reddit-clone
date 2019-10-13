@@ -16,6 +16,7 @@
     "deprecation": false,
     "no-floating-promises": false,
     "no-unnecessary-qualifier": false,
+    "no-var-requires": false,
     "no-unnecessary-type-assertion": false,
     "strict-type-predicates": false,
     "align": [

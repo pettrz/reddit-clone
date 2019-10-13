@@ -74,28 +74,28 @@ export const App = ({ history, location }: any) => {
           postData.map((data: [], i: number) => <Post data={data} key={i} />)
         )}
         <div>
-        {before && !pageError && (
-          <ButtonLink
-            type='pagination'
-            to={`/r/reactjs?${queryString.stringify({
-              limit: limit || 25,
-              before,
-            })}`}
-          >
-            Prev
-          </ButtonLink>
-        )}
-        {after && !pageError && (
-          <ButtonLink
-            type='pagination'
-            to={`/r/reactjs?${queryString.stringify({
-              limit: limit || 25,
-              after,
-            })}`}
-          >
-            Next
-          </ButtonLink>
-        )}
+          {before && !pageError && (
+            <ButtonLink
+              type="pagination"
+              to={`/r/reactjs?${queryString.stringify({
+                limit: limit || 25,
+                before,
+              })}`}
+            >
+              Prev
+            </ButtonLink>
+          )}
+          {after && !pageError && (
+            <ButtonLink
+              type="pagination"
+              to={`/r/reactjs?${queryString.stringify({
+                limit: limit || 25,
+                after,
+              })}`}
+            >
+              Next
+            </ButtonLink>
+          )}
         </div>
       </main>
     </div>
