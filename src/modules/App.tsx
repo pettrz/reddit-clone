@@ -1,6 +1,6 @@
-import axios from 'axios';
+import * as _ from 'lodash';
 import queryString from 'query-string';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './App.scss';
 import { ButtonLink } from './components/Button/Button';
 import Header from './components/Header/Header';
@@ -12,59 +12,57 @@ export const App = ({ history, location, subreddit, fetchSubreddit }: any) => {
     return uriParams;
   };
 
-  const [postData, setPostData] = useState([]);
-  const [before, setBefore] = useState(undefined);
-  const [after, setAfter] = useState(undefined);
+
   const [limit, setLimit] = useState(undefined);
+  const [url, setUrl] = useState<any>({sub: undefined, params: undefined});
   const [pageError, setPageError] = useState(false);
+
+  const getSubreddit = useCallback((sub: string, params: string) => {
+    fetchSubreddit({ sub, params });
+  }, [fetchSubreddit]);
+
+  // useEffect(() => {
+  //   history.push(location.pathname, queryString.stringify(url.params));
+  // },[limit, history]);
+
+  // const setHistory = (sub: string, params: string) => {
+  //   history.push(sub+params);
+  // };
 
   useEffect(() => {
     setPageError(false);
+    let ignore = false;
     const searchParams = getParamsFromUrl(location.search);
     const params = {
-      ...searchParams,
+      ...searchParams
     };
-    console.log(subreddit);
-    fetchSubreddit({
-      sub: location.pathname, 
-      params: queryString.stringify(params)
-    });
-    const fetchData = async () => {
-      await axios
-        .get(
-          `https://www.reddit.com${
-            location.pathname
-          }.json?${queryString.stringify(params)}`,
-        )
-        .then(result => {
-          // tslint:disable-next-line: no-shadowed-variable
-          const { data } = result.data;
-          setPostData(data.children);
-          setAfter(data.after);
-          setBefore(data.before);
-        })
-        .catch(err => setPageError(err));
-    };
-    fetchData();
-  }, [location]);
+    if (!ignore) {
+      getSubreddit(location.pathname, queryString.stringify(params));
+    } 
+    setUrl({sub: location.pathname, params});
+     
+    return () => { ignore = true; };
+  }, [location, getSubreddit]);
 
   const limitHandler = (e: any) => {
     const { value } = e.target;
-    const searchParams = getParamsFromUrl(location.search);
     setLimit(value);
-    history.push(
-      `/r/reactjs?${queryString.stringify({ ...searchParams, limit: value })}`,
-    );
+    history.push({
+      search: queryString.stringify({ ...url.params, limit })
+    });
   };
 
   const subredditHandler = (name: string) => {
-    const searchParams = getParamsFromUrl(location.searchParams);
     const pathname = `/r/${name}`;
-    history.push(
-      `${pathname}?${queryString.stringify({ ...searchParams, limit })}`,
-    );
+    history.push({
+      pathname,
+      search: queryString.stringify(url.params)
+    });
   };
-  console.log(subreddit);
+
+  const { after, before } = _.get(subreddit, 'postData', '');
+  const posts = _.get(subreddit, 'postData.children', []); 
+  console.log(url.params);
   return (
     <div className="wrapper">
       <Header limitHandler={limitHandler} subredditHandler={subredditHandler} />
@@ -78,16 +76,13 @@ export const App = ({ history, location, subreddit, fetchSubreddit }: any) => {
             </ButtonLink>
           </div>
         ) : (
-          postData.map((data: [], i: number) => <Post data={data} key={i} />)
+          posts.map((data: {}, i: number) => <Post data={data} key={i} />)
         )}
         <div>
           {before && !pageError && (
             <ButtonLink
               type="pagination"
-              to={`/r/reactjs?${queryString.stringify({
-                limit: limit || 25,
-                before,
-              })}`}
+              to={`${queryString.stringify({...url.params, limit: limit || 25, before })}`}
             >
               Prev
             </ButtonLink>

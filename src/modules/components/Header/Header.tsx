@@ -20,6 +20,7 @@ const Header = ({ limitHandler, subredditHandler }: IHeaderProps) => {
   };
 
   const LimitHandler = (e: any) => {
+    console.log(e.target.value);
     setLimit(e.target.value);
     limitHandler(e);
   };

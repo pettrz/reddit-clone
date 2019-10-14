@@ -10,7 +10,7 @@ import {
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './index.scss';
 import App from './modules';
 import { store } from './redux/store';
@@ -22,7 +22,6 @@ ReactDOM.render(
     <Router>
       <Route path="/r/:subreddit" component={App} />
       <Route path="/r/:subreddit/comments/:id/:title" component={App} />
-      <Redirect exact={true} from="/" to="/r/reactjs" />
     </Router>
   </Provider>,
   document.getElementById('root') as HTMLElement,

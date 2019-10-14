@@ -20,7 +20,7 @@ const Post = ({ data }: any) => {
   const created = _.get(data.data, 'created', 0);
   const score = _.get(data.data, 'score', 0);
   const numComments = _.get(data.data, 'num_comments', 0);
-  const creationDate = new Date(created * 1000).toDateString();
+  const creationDate = new Date(created * 1000).toISOString();
   const selfText = _.get(data.data, 'selftext', '');
   const author = _.get(data.data, 'author', '');
   const permaLink = _.get(data.data, 'permalink', '');
@@ -72,7 +72,11 @@ const Post = ({ data }: any) => {
                 />
                 <span>EXPAND</span>
               </button>
-              <Link to="/" className="post__container__body__lower__btn" tabIndex={0}>
+              <Link
+                to="/"
+                className="post__container__body__lower__btn"
+                tabIndex={0}
+              >
                 <FontAwesomeIcon
                   title="Toggle selftext"
                   icon="comment"
