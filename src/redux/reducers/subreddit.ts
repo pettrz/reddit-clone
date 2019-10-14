@@ -26,7 +26,7 @@ export const subreddit = handleActions<any>(
             ...state,
             isLoading: false,
             error: false,
-            postData: action.payload.data.data
+            postData: action.payload.data.data,
           };
         }
       },

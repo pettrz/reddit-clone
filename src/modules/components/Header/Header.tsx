@@ -39,9 +39,9 @@ const Header = ({ limitHandler, subredditHandler }: IHeaderProps) => {
             onChange={onChangeSubreddit}
           />
         </form>
-        {[5, 10, 25].map((v: number) => (
+        {[5, 10, 25].map((v: number, i: any) => (
           <Button
-            key={v}
+            key={v+i}
             value={v}
             selected={v === limit}
             onClick={LimitHandler}

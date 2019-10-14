@@ -1,5 +1,5 @@
 import * as _ from 'lodash';
-import queryString from 'query-string';
+import qs from 'query-string';
 import React, { useCallback, useEffect, useState } from 'react';
 import './App.scss';
 import { ButtonLink } from './components/Button/Button';
@@ -8,21 +8,23 @@ import Post from './components/Post/Post';
 
 export const App = ({ history, location, subreddit, fetchSubreddit }: any) => {
   const getParamsFromUrl = (urlString: string) => {
-    const uriParams = queryString.parse(urlString);
+    const uriParams = qs.parse(urlString);
     return uriParams;
   };
 
-
   const [limit, setLimit] = useState(undefined);
-  const [url, setUrl] = useState<any>({sub: undefined, params: undefined});
+  const [url, setUrl] = useState<any>({ sub: undefined, params: undefined });
   const [pageError, setPageError] = useState(false);
 
-  const getSubreddit = useCallback((sub: string, params: string) => {
-    fetchSubreddit({ sub, params });
-  }, [fetchSubreddit]);
+  const getSubreddit = useCallback(
+    (sub: string, params: {}) => {
+      fetchSubreddit({ sub, params });
+    },
+    [fetchSubreddit],
+  );
 
   // useEffect(() => {
-  //   history.push(location.pathname, queryString.stringify(url.params));
+  //   history.push(location.pathname, qs.stringify(url.params));
   // },[limit, history]);
 
   // const setHistory = (sub: string, params: string) => {
@@ -34,35 +36,41 @@ export const App = ({ history, location, subreddit, fetchSubreddit }: any) => {
     let ignore = false;
     const searchParams = getParamsFromUrl(location.search);
     const params = {
-      ...searchParams
+      ...searchParams,
     };
+    console.log(location.pathname);
     if (!ignore) {
-      getSubreddit(location.pathname, queryString.stringify(params));
-    } 
-    setUrl({sub: location.pathname, params});
-     
-    return () => { ignore = true; };
+      getSubreddit(location.pathname, params);
+    }
+    setUrl({ sub: location.pathname, params });
+
+    return () => {
+      ignore = true;
+    };
   }, [location, getSubreddit]);
 
   const limitHandler = (e: any) => {
     const { value } = e.target;
     setLimit(value);
     history.push({
-      search: queryString.stringify({ ...url.params, limit })
+      pathname: url.sub,
+      search: qs.stringify({ ...url.params, limit: value }),
     });
   };
 
   const subredditHandler = (name: string) => {
     const pathname = `/r/${name}`;
     history.push({
-      pathname,
-      search: queryString.stringify(url.params)
+      pathname
     });
   };
 
-  const { after, before } = _.get(subreddit, 'postData', '');
-  const posts = _.get(subreddit, 'postData.children', []); 
-  console.log(url.params);
+  const after = _.get(subreddit, 'postData.after', '');
+  const before = _.get(subreddit, 'postData.before', '');
+  const posts = _.get(subreddit, 'postData.children', []);
+  const beforeLink = url.sub + '?' + qs.stringify({ ...url.params, limit: limit || 25, after: undefined, before });
+  const afterLink = url.sub + '?' + qs.stringify({ ...url.params, limit: limit || 25, after, before: undefined });
+
   return (
     <div className="wrapper">
       <Header limitHandler={limitHandler} subredditHandler={subredditHandler} />
@@ -71,7 +79,7 @@ export const App = ({ history, location, subreddit, fetchSubreddit }: any) => {
           <div className="subreddit-error">
             <h3>Something went wrong :(</h3>
             <p>This subreddit probably doesn't exist.</p>
-            <ButtonLink to="/r/reactjs" type="home">
+            <ButtonLink to="/" type="home">
               Go home
             </ButtonLink>
           </div>
@@ -82,7 +90,7 @@ export const App = ({ history, location, subreddit, fetchSubreddit }: any) => {
           {before && !pageError && (
             <ButtonLink
               type="pagination"
-              to={`${queryString.stringify({...url.params, limit: limit || 25, before })}`}
+              to={beforeLink}
             >
               Prev
             </ButtonLink>
@@ -90,10 +98,7 @@ export const App = ({ history, location, subreddit, fetchSubreddit }: any) => {
           {after && !pageError && (
             <ButtonLink
               type="pagination"
-              to={`/r/reactjs?${queryString.stringify({
-                limit: limit || 25,
-                after,
-              })}`}
+              to={afterLink}
             >
               Next
             </ButtonLink>

@@ -21,6 +21,7 @@ interface IButtonLinkProps {
 const Button = ({
   children,
   type,
+  value,
   selected,
   onClick,
 }: IButtonProps & IButtonGlobalProps) => {
@@ -30,7 +31,7 @@ const Button = ({
     { 'btn--selected': selected },
   );
   return (
-    <button className={BtnClasses} onClick={onClick}>
+    <button className={BtnClasses} value={value} onClick={onClick}>
       {children}
     </button>
   );
