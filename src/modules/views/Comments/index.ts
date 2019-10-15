@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
-import { fetchSubreddit } from '../redux/actions/subreddit';
-import { App } from './App';
+import { fetchSubreddit } from '../../../redux/actions/subreddit';
+import { Comments } from './Comments';
 
 const mapStateToProps = (state: any) => state;
 const mapDispatchToProps = { fetchSubreddit };
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(App as any);
+)(Comments as any);

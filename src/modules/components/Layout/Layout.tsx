@@ -1,51 +1,58 @@
 import * as _ from 'lodash';
 import qs from 'query-string';
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { getParamsFromUrl } from '../../../helpers/getParams';
 import { ButtonLink } from '../Button/Button';
 import Header from '../Header';
 interface ILayoutProps {
-  // url: { sub: string, params: {}};
-  // subredditHandler: any;
   children: React.ReactNode;
   history?: any;
   location?: any;
   subreddit?: [] | undefined;
 }
 
-
-export const Layout = ({ subreddit, children, history, location }: ILayoutProps) => {
-
-  const [limit, setLimit] = useState(undefined);
+export const Layout = ({
+  subreddit,
+  children,
+  history,
+  location,
+}: ILayoutProps) => {
+  const [limit, setLimit] = useState<number>(25);
   const after = _.get(subreddit, 'postData.after', '');
   const before = _.get(subreddit, 'postData.before', '');
   const searchParams = getParamsFromUrl(location.search);
+  const count = Number(_.get(searchParams, 'count', 0));
+  const prevCount = +count - limit || 25;
+  const nextCount = count + +limit;
+
 
   const limitHandler = (e: any) => {
     const { value } = e.target;
     setLimit(value);
     history.push({
-      pathname: 'location.pathname',
-      search: qs.stringify({limit: value }),
+      pathname: location.pathname,
+      search: qs.stringify({ ...searchParams, limit: value }),
     });
   };
-  
+
   const beforeLink =
     `${location.pathname}?` +
     qs.stringify({
-      ...searchParams,
-      limit: limit || 25,
-      after: undefined,
+      count: prevCount,
       before,
-    });
+      after: undefined,
+      limit,
+    }, {sort: false});
   const afterLink =
     `${location.pathname}?` +
     qs.stringify({
-      ...searchParams,
-      limit: limit || 25,
-      after,
+      count: nextCount,
       before: undefined,
-    });
+      after,
+      limit,
+    }, {sort: false});
+
+  console.log(count);
   return (
     <div className="wrapper">
       <Header limitHandler={limitHandler} />
@@ -66,7 +73,6 @@ export const Layout = ({ subreddit, children, history, location }: ILayoutProps)
       </main>
     </div>
   );
-  
 };
 
 export default Layout;

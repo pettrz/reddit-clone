@@ -49,13 +49,13 @@ const Post = ({ data }: any) => {
           </div>
           <div className="post__container__body">
             <div className="post__container__body__upper">
-              <a
-                href={`${permaLink}`}
+              <Link
+                to={permaLink}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 {title}
-              </a>
+              </Link>
               <div className="post__container__body__upper__author">
                 Submitted by {author}
               </div>
@@ -73,9 +73,8 @@ const Post = ({ data }: any) => {
                 <span>EXPAND</span>
               </button>
               <Link
-                to="/"
+                to={permaLink}                
                 className="post__container__body__lower__btn"
-                tabIndex={0}
               >
                 <FontAwesomeIcon
                   title="Toggle selftext"

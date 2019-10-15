@@ -19,7 +19,7 @@ const Header = ({ limitHandler, history }: IHeaderProps) => {
     e.preventDefault();
     const pathname = `/r/${subreddit}`;
     history.push({
-      pathname
+      pathname,
     });
   };
 
@@ -45,7 +45,7 @@ const Header = ({ limitHandler, history }: IHeaderProps) => {
         </form>
         {[5, 10, 25].map((v: number, i: any) => (
           <Button
-            key={v+i}
+            key={v + i}
             value={v}
             selected={v === limit}
             onClick={LimitHandler}

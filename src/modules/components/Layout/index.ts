@@ -11,6 +11,6 @@ export default compose(
   withRouter,
   connect(
     mapStateToProps,
-    mapDispatchToProps
-  )
+    mapDispatchToProps,
+  ),
 )(Layout) as any;
