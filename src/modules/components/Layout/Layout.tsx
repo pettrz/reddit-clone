@@ -25,7 +25,6 @@ export const Layout = ({
   const prevCount = +count - limit || 25;
   const nextCount = count + +limit;
 
-
   const limitHandler = (e: any) => {
     const { value } = e.target;
     setLimit(value);
@@ -37,20 +36,26 @@ export const Layout = ({
 
   const beforeLink =
     `${location.pathname}?` +
-    qs.stringify({
-      count: prevCount,
-      before,
-      after: undefined,
-      limit,
-    }, {sort: false});
+    qs.stringify(
+      {
+        count: prevCount,
+        before,
+        after: undefined,
+        limit,
+      },
+      { sort: false },
+    );
   const afterLink =
     `${location.pathname}?` +
-    qs.stringify({
-      count: nextCount,
-      before: undefined,
-      after,
-      limit,
-    }, {sort: false});
+    qs.stringify(
+      {
+        count: nextCount,
+        before: undefined,
+        after,
+        limit,
+      },
+      { sort: false },
+    );
 
   console.log(count);
   return (

@@ -49,11 +49,7 @@ const Post = ({ data }: any) => {
           </div>
           <div className="post__container__body">
             <div className="post__container__body__upper">
-              <Link
-                to={permaLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link to={permaLink} target="_blank" rel="noopener noreferrer">
                 {title}
               </Link>
               <div className="post__container__body__upper__author">
@@ -73,7 +69,7 @@ const Post = ({ data }: any) => {
                 <span>EXPAND</span>
               </button>
               <Link
-                to={permaLink}                
+                to={permaLink}
                 className="post__container__body__lower__btn"
               >
                 <FontAwesomeIcon
