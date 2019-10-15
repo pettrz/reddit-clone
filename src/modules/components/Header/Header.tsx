@@ -6,8 +6,9 @@ import './Header.scss';
 interface IHeaderProps {
   limitHandler: (e: any) => void;
   subredditHandler: (name: any) => void;
+  history: any;
 }
-const Header = ({ limitHandler, subredditHandler }: IHeaderProps) => {
+const Header = ({ limitHandler, history }: IHeaderProps) => {
   const [limit, setLimit] = useState(undefined);
   const [subreddit, setSubreddit] = useState(undefined);
 
@@ -16,7 +17,10 @@ const Header = ({ limitHandler, subredditHandler }: IHeaderProps) => {
   };
   const onSubmitSubreddit = (e: any) => {
     e.preventDefault();
-    subredditHandler(subreddit);
+    const pathname = `/r/${subreddit}`;
+    history.push({
+      pathname
+    });
   };
 
   const LimitHandler = (e: any) => {
@@ -27,7 +31,7 @@ const Header = ({ limitHandler, subredditHandler }: IHeaderProps) => {
   return (
     <header className="main-header">
       <div className="main-header__title">
-        <Link to="/r/reactjs">
+        <Link to="/">
           <h2>Reddit Clone</h2>
         </Link>
       </div>

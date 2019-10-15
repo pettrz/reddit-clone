@@ -50,7 +50,7 @@ const Post = ({ data }: any) => {
           <div className="post__container__body">
             <div className="post__container__body__upper">
               <a
-                href={`http://www.reddit.com${permaLink}`}
+                href={`${permaLink}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
