@@ -21,7 +21,7 @@ library.add(fab, faArrowDown, faAngleDown, faBookOpen, faComment, faComments);
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <Route path="/r/:subreddit" component={App} />
+      <Route exact={true} path="/r/:subreddit" component={App} />
       <Route path="/r/:subreddit/comments/:id/:title" component={Comments} />
     </Router>
   </Provider>,

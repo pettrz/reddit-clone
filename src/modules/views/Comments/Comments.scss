@@ -1,0 +1,26 @@
+@import '../../../styles/_variables';
+
+.comments,
+.showcase {
+  &__header h3, h5 {
+    margin: 30px 0;
+    text-align: left;
+  }
+  background-color: $main-white;
+  padding: 30px 80px;
+  margin-bottom: 30px;
+  box-shadow: $default-shadow;
+}
+
+.showcase {
+  &__selftext {
+    &__body {
+      @include selftextProps;
+    }
+  }
+}
+
+.comments {
+  background-color: $main-white;
+  padding: 30px 80px;
+}

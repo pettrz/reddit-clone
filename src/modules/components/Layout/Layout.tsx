@@ -9,6 +9,7 @@ interface ILayoutProps {
   history?: any;
   location?: any;
   subreddit?: [] | undefined;
+  pagination?: boolean;
 }
 
 export const Layout = ({
@@ -16,13 +17,14 @@ export const Layout = ({
   children,
   history,
   location,
+  pagination = true
 }: ILayoutProps) => {
   const [limit, setLimit] = useState<number>(25);
   const after = _.get(subreddit, 'postData.after', '');
   const before = _.get(subreddit, 'postData.before', '');
   const searchParams = getParamsFromUrl(location.search);
   const count = Number(_.get(searchParams, 'count', 0));
-  const prevCount = +count - limit || 25;
+  const prevCount = count - +limit || 25;
   const nextCount = count + +limit;
 
   const limitHandler = (e: any) => {
@@ -56,14 +58,13 @@ export const Layout = ({
       },
       { sort: false },
     );
-
-  console.log(count);
   return (
     <div className="wrapper">
       <Header limitHandler={limitHandler} />
       <main>
         {children}
-        <div>
+        
+        {pagination && <div>
           {before && (
             <ButtonLink type="pagination" to={beforeLink}>
               Prev
@@ -74,7 +75,7 @@ export const Layout = ({
               Next
             </ButtonLink>
           )}
-        </div>
+        </div>}
       </main>
     </div>
   );

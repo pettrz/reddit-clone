@@ -49,7 +49,12 @@ const Post = ({ data }: any) => {
           </div>
           <div className="post__container__body">
             <div className="post__container__body__upper">
-              <Link to={permaLink} target="_blank" rel="noopener noreferrer">
+              <Link 
+                to={{
+                  pathname: permaLink,
+                  state: { data }
+                }} 
+              >
                 {title}
               </Link>
               <div className="post__container__body__upper__author">
