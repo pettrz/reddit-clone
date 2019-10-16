@@ -12,7 +12,7 @@ const initialState = {
 export const postComments = handleActions<any>(
   {
     [ASYNC_START]: asyncWrapper({
-      [FETCH_POST_COMMENTS]: (state: any) => ({ ...state, isLoading: true })
+      [FETCH_POST_COMMENTS]: (state: any) => ({ ...state, isLoading: true }),
     }),
     [ASYNC_DONE]: asyncWrapper({
       [FETCH_POST_COMMENTS]: (state: any, action: any) => {
@@ -28,11 +28,11 @@ export const postComments = handleActions<any>(
             isLoading: false,
             error: false,
             post: action.payload.data[0].data.children[0].data,
-            comments: action.payload.data[1].data.children[0].data
+            comments: action.payload.data[1].data.children[0].data,
           };
         }
-      }
-    })
+      },
+    }),
   },
-  initialState
+  initialState,
 );

@@ -8,7 +8,11 @@ interface IComments {
   fetchPostComments: (path: any) => void;
   postComments: [];
 }
-export const Comments = ({ location, fetchPostComments, postComments }: IComments) => {
+export const Comments = ({
+  location,
+  fetchPostComments,
+  postComments,
+}: IComments) => {
   const post = _.get(postComments, 'post', []);
   const comments = _.get(postComments, 'comments', []);
 
@@ -32,8 +36,8 @@ export const Comments = ({ location, fetchPostComments, postComments }: IComment
 
   return (
     <Layout pagination={false}>
-      <div className='showcase'>
-        <div className='showcase__header'>
+      <div className="showcase">
+        <div className="showcase__header">
           <h3>{post.title}</h3>
         </div>
         <div className="showcase__selftext">
@@ -43,8 +47,8 @@ export const Comments = ({ location, fetchPostComments, postComments }: IComment
         </div>
       </div>
 
-      <div className='comments'>
-        <div className='comments__header'>
+      <div className="comments">
+        <div className="comments__header">
           <h5>{post.numComments || 'No'} Comments</h5>
         </div>
       </div>

@@ -11,7 +11,7 @@ const initialState = {
 export const subreddit = handleActions<any>(
   {
     [ASYNC_START]: asyncWrapper({
-      [FETCH_SUBREDDIT]: (state: any) => ({ ...state, isLoading: true })
+      [FETCH_SUBREDDIT]: (state: any) => ({ ...state, isLoading: true }),
     }),
     [ASYNC_DONE]: asyncWrapper({
       [FETCH_SUBREDDIT]: (state: any, action: any) => {
@@ -29,8 +29,8 @@ export const subreddit = handleActions<any>(
             postData: action.payload.data.data,
           };
         }
-      }
-    })
+      },
+    }),
   },
-  initialState
+  initialState,
 );

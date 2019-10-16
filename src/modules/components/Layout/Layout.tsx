@@ -18,13 +18,13 @@ export const Layout = ({
   children,
   history,
   location,
-  pagination = true
+  pagination = true,
 }: ILayoutProps) => {
   const [limit, setLimit] = useState<number>(25);
   const after = _.get(subreddit, 'postData.after', '');
   const before = _.get(subreddit, 'postData.before', '');
   const searchParams = getParamsFromUrl(location.search);
-  
+
   const count = Number(_.get(searchParams, 'count', 0));
   const prevCount = count - +limit || 25;
   const nextCount = count + +limit;
@@ -65,19 +65,21 @@ export const Layout = ({
       <Header limitHandler={limitHandler} />
       <main>
         {children}
-        
-        {pagination && <div>
-          {before && (
-            <ButtonLink type="pagination" to={beforeLink}>
-              Prev
-            </ButtonLink>
-          )}
-          {after && (
-            <ButtonLink type="pagination" to={afterLink}>
-              Next
-            </ButtonLink>
-          )}
-        </div>}
+
+        {pagination && (
+          <div>
+            {before && (
+              <ButtonLink type="pagination" to={beforeLink}>
+                Prev
+              </ButtonLink>
+            )}
+            {after && (
+              <ButtonLink type="pagination" to={afterLink}>
+                Next
+              </ButtonLink>
+            )}
+          </div>
+        )}
       </main>
     </div>
   );

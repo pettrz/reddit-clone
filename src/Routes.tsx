@@ -13,7 +13,6 @@ import './index.scss';
 import App from './modules';
 import Comments from './modules/views/Comments';
 
-
 library.add(fab, faArrowDown, faAngleDown, faBookOpen, faComment, faComments);
 
 export const Routes = () => (

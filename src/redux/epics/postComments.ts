@@ -12,7 +12,7 @@ export const postCommentsEpic: Epic<fetchPostComments, any> = action$ => {
         {
           method: 'get',
           headers: {},
-          url: `${PAGE_URL + action.payload.path}.json`
+          url: `${PAGE_URL + action.payload.path}.json`,
         },
         action,
       ) as any,

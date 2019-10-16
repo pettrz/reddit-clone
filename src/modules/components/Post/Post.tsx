@@ -49,11 +49,11 @@ const Post = ({ data }: any) => {
           </div>
           <div className="post__container__body">
             <div className="post__container__body__upper">
-              <Link 
+              <Link
                 to={{
                   pathname: permaLink,
-                  state: { data }
-                }} 
+                  state: { data },
+                }}
               >
                 {title}
               </Link>

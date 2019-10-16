@@ -8,7 +8,6 @@ import Layout from './components/Layout';
 import Post from './components/Post/Post';
 
 export const App = ({ location, subreddit, fetchSubreddit }: any) => {
-
   const [pageError, setPageError] = useState(false);
 
   const getSubreddit = useCallback(
