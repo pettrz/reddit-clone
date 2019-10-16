@@ -8,6 +8,7 @@ import Layout from './components/Layout';
 import Post from './components/Post/Post';
 
 export const App = ({ location, subreddit, fetchSubreddit }: any) => {
+
   const [pageError, setPageError] = useState(false);
 
   const getSubreddit = useCallback(
@@ -33,7 +34,7 @@ export const App = ({ location, subreddit, fetchSubreddit }: any) => {
   }, [location, getSubreddit]);
 
   const posts = _.get(subreddit, 'postData.children', []);
-
+  console.log(subreddit);
   return (
     <Layout>
       {pageError ? (

@@ -1,20 +1,21 @@
 import { handleActions } from 'redux-actions';
-import { FETCH_SUBREDDIT } from '../actions/subreddit';
+import { FETCH_POST_COMMENTS } from '../actions/subreddit';
 import { ASYNC_DONE, ASYNC_START, asyncWrapper } from '../async';
 
 const initialState = {
   isLoading: false,
-  postData: [],
+  post: [],
+  comments: [],
   error: undefined,
 };
 
-export const subreddit = handleActions<any>(
+export const postComments = handleActions<any>(
   {
     [ASYNC_START]: asyncWrapper({
-      [FETCH_SUBREDDIT]: (state: any) => ({ ...state, isLoading: true })
+      [FETCH_POST_COMMENTS]: (state: any) => ({ ...state, isLoading: true })
     }),
     [ASYNC_DONE]: asyncWrapper({
-      [FETCH_SUBREDDIT]: (state: any, action: any) => {
+      [FETCH_POST_COMMENTS]: (state: any, action: any) => {
         if (action.payload.data.error) {
           return {
             ...state,
@@ -26,7 +27,8 @@ export const subreddit = handleActions<any>(
             ...state,
             isLoading: false,
             error: false,
-            postData: action.payload.data.data,
+            post: action.payload.data[0].data.children[0].data,
+            comments: action.payload.data[1].data.children[0].data
           };
         }
       }

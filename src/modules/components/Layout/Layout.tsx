@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { getParamsFromUrl } from '../../../helpers/getParams';
 import { ButtonLink } from '../Button/Button';
 import Header from '../Header';
+
 interface ILayoutProps {
   children: React.ReactNode;
   history?: any;
@@ -23,6 +24,7 @@ export const Layout = ({
   const after = _.get(subreddit, 'postData.after', '');
   const before = _.get(subreddit, 'postData.before', '');
   const searchParams = getParamsFromUrl(location.search);
+  
   const count = Number(_.get(searchParams, 'count', 0));
   const prevCount = count - +limit || 25;
   const nextCount = count + +limit;

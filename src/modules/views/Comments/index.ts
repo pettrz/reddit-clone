@@ -1,11 +1,11 @@
 
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import { fetchSubreddit } from '../../../redux/actions/subreddit';
-import { Comments } from './Comments';
+import { fetchPostComments } from '../../../redux/actions/subreddit';
+import Comments from './Comments';
 
-const mapDispatchToProps = { fetchSubreddit } as any;
+const mapDispatchToProps = { fetchPostComments } as any;
 const mapStateToProps = (state: any) => state as any;
 
 export default compose(
