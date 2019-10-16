@@ -3,10 +3,11 @@
 .main-header {
   @extend %flex;
   @include justify-content(space-between);
-  margin: 10vh 0 0 50px;
+  margin-top: 10vh;
   &__title {
     h2 {
       color: $main-blue;
+      margin: 0;
       text-transform: uppercase;
       line-height: 39px;
     }

@@ -19,6 +19,14 @@ pre {
   box-sizing: border-box;
 }
 
+button {
+  cursor: pointer;
+}
+
+iframe {
+  border: none;
+}
+
 a {
   text-decoration: none;
   color: $main-blue;

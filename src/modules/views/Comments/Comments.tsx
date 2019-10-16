@@ -35,8 +35,6 @@ export const Comments = ({
     };
   }, [getPostComments, location.pathname]);
 
-  console.log(comments);
-
   return (
     <Layout pagination={false}>
       <div className="showcase">

@@ -20,7 +20,7 @@ export const App = ({ location, subreddit, fetchSubreddit }: any) => {
     const searchParams = getParamsFromUrl(location.search);
     const params = {
       limit: 10,
-      ...searchParams
+      ...searchParams,
     };
     if (!ignore) {
       getSubreddit(location.pathname, params);
@@ -32,7 +32,6 @@ export const App = ({ location, subreddit, fetchSubreddit }: any) => {
   }, [location, getSubreddit]);
 
   const posts = _.get(subreddit, 'postData.children', []);
-  console.log(subreddit);
   return (
     <Layout>
       {pageError ? (

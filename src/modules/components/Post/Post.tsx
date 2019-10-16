@@ -24,7 +24,9 @@ const Post = ({ data }: any) => {
   const selfText = _.get(data.data, 'selftext', '');
   const author = _.get(data.data, 'author', '');
   const permaLink = _.get(data.data, 'permalink', '');
+  const mediaEmbed = _.get(data.data, 'media_embed', '');
 
+  e.log(data);
   const toggleSelftext = () => {
     const selftextState = selftextExpand ? false : true;
     setSelftextExpand(selftextState);
@@ -84,14 +86,18 @@ const Post = ({ data }: any) => {
       </div>
       {selftextExpand && (
         <div className="selftext">
-          <div className="selftext__title">
-            <h1>
-              <i>{author} says...</i>
-            </h1>
-          </div>
-          <div className="selftext__body">
-            <Markdown source={selfText} />
-          </div>
+          { selfText &&
+            <>
+              <div className="selftext__title">
+                <h1>
+                  <i>{author} says...</i>
+                </h1>
+              </div>
+              <div className="selftext__body">
+                <Markdown source={selfText} />
+              </div>
+            </>
+          }
         </div>
       )}
     </div>
