@@ -36,7 +36,6 @@ export const Comments = ({
   }, [getPostComments, location.pathname]);
 
   console.log(comments);
-  console.log(comments.map((data: any) => data.author));
 
   return (
     <Layout pagination={false}>
@@ -55,9 +54,9 @@ export const Comments = ({
         <div className="comments__header">
           <h5>{post.num_comments || 'No'} Comments</h5>
         </div>
-          {comments.map((c: any) => (
-            <Reply key={c.data.id} data={c.data} />
-          ))}
+        {comments.map((c: any) => (
+          <Reply key={c.data.id} data={c.data} />
+        ))}
       </div>
     </Layout>
   );

@@ -21,9 +21,7 @@
 }
 
 .comments {
+  &__header { padding: 0 60px }
   background-color: $main-white;
-  padding: 30px 80px;
-  &__reply {
-    text-align: left;
-  }
+  padding: 30px 0;
 }

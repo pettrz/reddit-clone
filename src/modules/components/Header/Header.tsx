@@ -49,6 +49,7 @@ const Header = ({ limitHandler, history }: IHeaderProps) => {
             value={v}
             selected={v === limit}
             onClick={LimitHandler}
+            title={`Limit to ${v}`}
           >
             {v}
           </Button>
