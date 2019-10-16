@@ -44,17 +44,12 @@ const Post = ({ data }: any) => {
               tz="Europe/Stockholm"
             />
           </div>
-          <div className="post__container__thumbnail">
+          <Link to={permaLink} className="post__container__thumbnail">
             <img height="80" width="80" src={thumbnailDisplay} alt="" />
-          </div>
+          </Link>
           <div className="post__container__body">
             <div className="post__container__body__upper">
-              <Link
-                to={{
-                  pathname: permaLink,
-                  state: { data },
-                }}
-              >
+              <Link to={permaLink}>
                 {title}
               </Link>
               <div className="post__container__body__upper__author">

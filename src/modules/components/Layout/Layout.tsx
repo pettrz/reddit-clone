@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { getParamsFromUrl } from '../../../helpers/getParams';
 import { ButtonLink } from '../Button/Button';
 import Header from '../Header';
+import './Layout.scss';
 
 interface ILayoutProps {
   children: React.ReactNode;
@@ -67,7 +68,7 @@ export const Layout = ({
         {children}
 
         {pagination && (
-          <div>
+          <div className='wrapper__pagination'>
             {before && (
               <ButtonLink type="pagination" to={beforeLink}>
                 Prev

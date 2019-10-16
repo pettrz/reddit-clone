@@ -1,10 +1,8 @@
 import * as _ from 'lodash';
 import React, { useCallback, useEffect, useState } from 'react';
 import { getParamsFromUrl } from '../helpers/getParams';
-import './App.scss';
 import { ButtonLink } from './components/Button/Button';
 import Layout from './components/Layout';
-
 import Post from './components/Post/Post';
 
 export const App = ({ location, subreddit, fetchSubreddit }: any) => {

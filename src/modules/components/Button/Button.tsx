@@ -6,7 +6,7 @@ import './Button.scss';
 interface IButtonGlobalProps {
   children: React.ReactNode;
   type?: 'home' | 'limit' | 'pagination';
-  title?: string; 
+  title?: string;
 }
 
 interface IButtonProps {
@@ -33,7 +33,12 @@ const Button = ({
     { 'btn--selected': selected },
   );
   return (
-    <button className={BtnClasses} value={value} onClick={onClick} title={title}>
+    <button
+      className={BtnClasses}
+      value={value}
+      onClick={onClick}
+      title={title}
+    >
       {children}
     </button>
   );
