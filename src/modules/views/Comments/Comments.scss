@@ -23,4 +23,7 @@
 .comments {
   background-color: $main-white;
   padding: 30px 80px;
+  &__reply {
+    text-align: left;
+  }
 }

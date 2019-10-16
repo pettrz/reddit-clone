@@ -3,6 +3,7 @@ import React, { useCallback, useEffect } from 'react';
 import Markdown from 'react-markdown';
 import Layout from '../../components/Layout';
 import './Comments.scss';
+import Reply from './Reply/Reply';
 interface IComments {
   location?: any;
   fetchPostComments: (path: any) => void;
@@ -34,6 +35,9 @@ export const Comments = ({
     };
   }, [getPostComments, location.pathname]);
 
+  console.log(comments);
+  console.log(comments.map((data: any) => data.author));
+
   return (
     <Layout pagination={false}>
       <div className="showcase">
@@ -42,15 +46,18 @@ export const Comments = ({
         </div>
         <div className="showcase__selftext">
           <div className="showcase__selftext__body">
-            <Markdown source={post.selfText} />
+            <Markdown source={post.selftext} />
           </div>
         </div>
       </div>
 
       <div className="comments">
         <div className="comments__header">
-          <h5>{post.numComments || 'No'} Comments</h5>
+          <h5>{post.num_comments || 'No'} Comments</h5>
         </div>
+          {comments.map((c: any) => (
+            <Reply key={c.data.id} data={c.data} />
+          ))}
       </div>
     </Layout>
   );

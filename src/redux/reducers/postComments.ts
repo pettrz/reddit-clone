@@ -28,7 +28,7 @@ export const postComments = handleActions<any>(
             isLoading: false,
             error: false,
             post: action.payload.data[0].data.children[0].data,
-            comments: action.payload.data[1].data.children[0].data,
+            comments: action.payload.data[1].data.children,
           };
         }
       },
