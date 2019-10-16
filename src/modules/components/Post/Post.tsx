@@ -49,9 +49,7 @@ const Post = ({ data }: any) => {
           </Link>
           <div className="post__container__body">
             <div className="post__container__body__upper">
-              <Link to={permaLink}>
-                {title}
-              </Link>
+              <Link to={permaLink}>{title}</Link>
               <div className="post__container__body__upper__author">
                 Submitted by {author}
               </div>

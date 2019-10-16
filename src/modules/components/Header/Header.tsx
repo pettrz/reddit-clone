@@ -9,8 +9,8 @@ interface IHeaderProps {
   history: any;
 }
 const Header = ({ limitHandler, history }: IHeaderProps) => {
-  const [limit, setLimit] = useState(undefined);
-  const [subreddit, setSubreddit] = useState(undefined);
+  const [limit, setLimit] = useState<number>(10);
+  const [subreddit, setSubreddit] = useState<string>('');
 
   const onChangeSubreddit = (e: any) => {
     setSubreddit(e.target.value);
@@ -24,7 +24,6 @@ const Header = ({ limitHandler, history }: IHeaderProps) => {
   };
 
   const LimitHandler = (e: any) => {
-    console.log(e.target.value);
     setLimit(e.target.value);
     limitHandler(e);
   };

@@ -20,7 +20,7 @@ export const Reply = ({ data, offset = 100 }: IReply) => {
   const childReply = _.get(data, 'replies.data.children[0].data', undefined);
   const replyClasses = cn('reply', { 'reply--collapsed': collapsed });
   return (
-    <div className='reply-chain'>
+    <div className="reply-chain">
       <div className={replyClasses} style={{ width: offset + '%' }}>
         <div className="reply__header">
           <div className="reply__header__collapse">
@@ -47,7 +47,9 @@ export const Reply = ({ data, offset = 100 }: IReply) => {
           )}
         </div>
       </div>
-      { childReply && !collapsed && <Reply data={childReply} offset={offset - 10} /> }
+      {childReply && !collapsed && (
+        <Reply data={childReply} offset={offset - 10} />
+      )}
     </div>
   );
 };

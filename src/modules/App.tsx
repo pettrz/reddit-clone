@@ -19,7 +19,8 @@ export const App = ({ location, subreddit, fetchSubreddit }: any) => {
     let ignore = false;
     const searchParams = getParamsFromUrl(location.search);
     const params = {
-      ...searchParams,
+      limit: 10,
+      ...searchParams
     };
     if (!ignore) {
       getSubreddit(location.pathname, params);
