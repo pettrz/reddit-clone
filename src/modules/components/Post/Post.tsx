@@ -86,7 +86,7 @@ const Post = ({ data }: any) => {
       </div>
       {selftextExpand && (
         <div className="selftext">
-          { selfText &&
+          {selfText && (
             <>
               <div className="selftext__title">
                 <h1>
@@ -97,7 +97,7 @@ const Post = ({ data }: any) => {
                 <Markdown source={selfText} />
               </div>
             </>
-          }
+          )}
         </div>
       )}
     </div>

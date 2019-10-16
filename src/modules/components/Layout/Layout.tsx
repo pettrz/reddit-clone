@@ -25,9 +25,9 @@ export const Layout = ({
   const after = _.get(subreddit, 'postData.after', '');
   const before = _.get(subreddit, 'postData.before', '');
   const search = _.get(location, 'search', '');
-  
+
   const searchParams = getParamsFromUrl(search);
-  const pathname = _.get(location, 'pathame', '')
+  const pathname = _.get(location, 'pathame', '');
 
   const count = Number(_.get(searchParams, 'count', 0));
   const prevCount = count - +limit || 25;
@@ -42,17 +42,18 @@ export const Layout = ({
     });
   };
 
-  const beforeLink = location &&
+  const beforeLink =
+    location &&
     `${pathname}?` +
-    qs.stringify(
-      {
-        count: prevCount,
-        before,
-        after: undefined,
-        limit,
-      },
-      { sort: false },
-    );
+      qs.stringify(
+        {
+          count: prevCount,
+          before,
+          after: undefined,
+          limit,
+        },
+        { sort: false },
+      );
   const afterLink =
     `${pathname}?` +
     qs.stringify(
@@ -71,7 +72,7 @@ export const Layout = ({
         {children}
 
         {pagination && (
-          <div className='wrapper__pagination'>
+          <div className="wrapper__pagination">
             {before && (
               <ButtonLink type="pagination" to={beforeLink}>
                 Prev

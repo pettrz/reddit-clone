@@ -28,7 +28,7 @@ library.add(
 
 export const Routes = () => (
   <BrowserRouter>
-    <Redirect from="/" to="/r/reactjs"/>
+    <Redirect from="/" to="/r/reactjs" />
     <Route exact={true} path="/r/:subreddit" component={App} />
     <Route
       exact={true}
