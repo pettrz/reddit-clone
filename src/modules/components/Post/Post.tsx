@@ -24,9 +24,7 @@ const Post = ({ data }: any) => {
   const selfText = _.get(data.data, 'selftext', '');
   const author = _.get(data.data, 'author', '');
   const permaLink = _.get(data.data, 'permalink', '');
-  const mediaEmbed = _.get(data.data, 'media_embed', '');
 
-  e.log(data);
   const toggleSelftext = () => {
     const selftextState = selftextExpand ? false : true;
     setSelftextExpand(selftextState);
