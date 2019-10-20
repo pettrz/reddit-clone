@@ -9,7 +9,8 @@ const initialState = {
   error: undefined,
 };
 
-export const postComments = handleActions<any>({
+export const postComments = handleActions<any>(
+  {
     [CLEAR_COMMENTS]: () => initialState,
     [ASYNC_START]: asyncWrapper({
       [FETCH_POST_COMMENTS]: (state: any) => ({ ...state, isLoading: true }),

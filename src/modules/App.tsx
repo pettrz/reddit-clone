@@ -1,12 +1,11 @@
 import * as _ from 'lodash';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { getParamsFromUrl } from '../helpers/getParams';
-import { ButtonLink } from './components/Button/Button';
 import Layout from './components/Layout';
 import Post from './components/Post/Post';
+import { NoMatchText } from './views/404/404';
 
 export const App = ({ location, subreddit, fetchSubreddit }: any) => {
-  const [pageError, setPageError] = useState(false);
 
   const getSubreddit = useCallback(
     (sub: string, params: {}) => {
@@ -15,8 +14,8 @@ export const App = ({ location, subreddit, fetchSubreddit }: any) => {
     [fetchSubreddit],
   );
   useEffect(() => {
-    setPageError(false);
     let ignore = false;
+
     const searchParams = getParamsFromUrl(location.search);
     const params = {
       limit: 10,
@@ -29,20 +28,13 @@ export const App = ({ location, subreddit, fetchSubreddit }: any) => {
     return () => {
       ignore = true;
     };
+
   }, [location, getSubreddit]);
 
   const posts = _.get(subreddit, 'postData.children', []);
   return (
     <Layout>
-      {pageError ? (
-        <div className="subreddit-error">
-          <h3>Something went wrong :(</h3>
-          <p>This subreddit probably doesn't exist.</p>
-          <ButtonLink to="/" type="home">
-            Go home
-          </ButtonLink>
-        </div>
-      ) : (
+      {subreddit.error ? <NoMatchText/> : (
         posts.map((data: {}, i: number) => <Post data={data} key={i} />)
       )}
     </Layout>

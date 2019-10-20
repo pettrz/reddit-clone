@@ -15,7 +15,7 @@ export const subreddit = handleActions<any>(
     }),
     [ASYNC_DONE]: asyncWrapper({
       [FETCH_SUBREDDIT]: (state: any, action: any) => {
-        if (action.payload.data.error) {
+        if (!action.payload.data) {
           return {
             ...state,
             isLoading: false,

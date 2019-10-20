@@ -10,9 +10,10 @@ import {
   faPlusSquare,
 } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
-import { BrowserRouter, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './index.scss';
 import App from './modules';
+import { NoMatch } from './modules/views/404/404';
 import Comments from './modules/views/Comments';
 
 library.add(
@@ -27,13 +28,17 @@ library.add(
 );
 
 export const Routes = () => (
+
   <BrowserRouter>
-    <Redirect from="/" to="/r/reactjs" />
-    <Route exact={true} path="/r/:subreddit" component={App} />
-    <Route
-      exact={true}
-      path="/r/:subreddit/comments/:id/:title"
-      component={Comments}
-    />
+    <Switch>
+      <Redirect exact={true} from='/' to='/r/reactjs'/>
+      <Route exact={true} path="/r/:subreddit" component={App} />
+      <Route
+        exact={true}
+        path="/r/:subreddit/comments/:id/:title"
+        component={Comments}
+      />
+      <Route component={NoMatch}/>
+    </Switch>
   </BrowserRouter>
 );

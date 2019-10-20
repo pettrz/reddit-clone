@@ -1,7 +1,10 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import { clearComments, fetchPostComments } from '../../../redux/actions/subreddit';
+import {
+  clearComments,
+  fetchPostComments,
+} from '../../../redux/actions/subreddit';
 import Comments from './Comments';
 
 const mapDispatchToProps = { fetchPostComments, clearComments } as any;

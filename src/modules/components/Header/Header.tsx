@@ -19,7 +19,7 @@ const Header = ({ limitHandler, history }: IHeaderProps) => {
     e.preventDefault();
     const pathname = `/r/${subreddit}`;
     history.push({
-      pathname,
+      pathname
     });
   };
 

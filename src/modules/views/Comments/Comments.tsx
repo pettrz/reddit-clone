@@ -14,7 +14,7 @@ export const Comments = ({
   location,
   fetchPostComments,
   postComments,
-  clearComments
+  clearComments,
 }: IComments) => {
   const post = _.get(postComments, 'post', []);
   const comments = _.get(postComments, 'comments', []);
@@ -32,7 +32,8 @@ export const Comments = ({
       getPostComments(location.pathname);
     }
 
-    return () => { // componentWillUnmount
+    return () => {
+      // componentWillUnmount
       ignore = true;
       clearComments();
     };

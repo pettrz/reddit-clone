@@ -7,7 +7,9 @@ import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import './Post.scss';
 
-const Post = ({ data }: any) => {
+interface IPost { data: any; }
+
+const Post = ({ data }: IPost) => {
   const [selftextExpand, setSelftextExpand] = useState(false);
   const title = _.get(data.data, 'title', '');
   const thumbnail = _.get(data.data, 'thumbnail', '');
@@ -24,11 +26,14 @@ const Post = ({ data }: any) => {
   const selfText = _.get(data.data, 'selftext', '');
   const author = _.get(data.data, 'author', '');
   const permaLink = _.get(data.data, 'permalink', '');
+  const embed = _.get(data.data, 'secure_media_embed', '');
+
 
   const toggleSelftext = () => {
     const selftextState = selftextExpand ? false : true;
     setSelftextExpand(selftextState);
   };
+  console.log(data.data);
   return (
     <div className="post-wrapper">
       <div className="post row">
@@ -85,17 +90,17 @@ const Post = ({ data }: any) => {
       {selftextExpand && (
         <div className="selftext">
           {selfText && (
-            <>
-              <div className="selftext__title">
-                <h1>
-                  <i>{author} says...</i>
-                </h1>
-              </div>
-              <div className="selftext__body">
-                <Markdown source={selfText} />
-              </div>
-            </>
+            <div className="selftext__title">
+              <h1>
+                <i>{author} says...</i>
+              </h1>
+            </div>
           )}
+          <div className="selftext__body">
+            <Markdown source={selfText} />
+            {embed && <Markdown source={embed} />}
+          </div>
+
         </div>
       )}
     </div>
