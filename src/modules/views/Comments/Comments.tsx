@@ -52,7 +52,7 @@ export const Comments = ({
         <div className="showcase__selftext">
           <div className="showcase__selftext__body">
             <Markdown source={post.selftext} />
-            { embed && parser(decode(embed.content))}            
+            {embed && parser(decode(embed.content))}
           </div>
         </div>
       </div>
