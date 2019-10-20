@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import parser from 'html-react-parser';
 import _ from 'lodash';
 import 'moment-timezone';
 import React, { useState } from 'react';
@@ -6,8 +7,11 @@ import Markdown from 'react-markdown';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import './Post.scss';
+const decode = require('decode-html');
 
-interface IPost { data: any; }
+interface IPost {
+  data: any;
+}
 
 const Post = ({ data }: IPost) => {
   const [selftextExpand, setSelftextExpand] = useState(false);
@@ -28,12 +32,10 @@ const Post = ({ data }: IPost) => {
   const permaLink = _.get(data.data, 'permalink', '');
   const embed = _.get(data.data, 'secure_media_embed', '');
 
-
   const toggleSelftext = () => {
     const selftextState = selftextExpand ? false : true;
     setSelftextExpand(selftextState);
   };
-  console.log(data.data);
   return (
     <div className="post-wrapper">
       <div className="post row">
@@ -98,9 +100,8 @@ const Post = ({ data }: IPost) => {
           )}
           <div className="selftext__body">
             <Markdown source={selfText} />
-            {embed && <Markdown source={embed} />}
+            {parser(decode(embed.content))}
           </div>
-
         </div>
       )}
     </div>

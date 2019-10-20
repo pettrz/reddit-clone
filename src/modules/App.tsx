@@ -6,7 +6,6 @@ import Post from './components/Post/Post';
 import { NoMatchText } from './views/404/404';
 
 export const App = ({ location, subreddit, fetchSubreddit }: any) => {
-
   const getSubreddit = useCallback(
     (sub: string, params: {}) => {
       fetchSubreddit({ sub, params });
@@ -28,13 +27,14 @@ export const App = ({ location, subreddit, fetchSubreddit }: any) => {
     return () => {
       ignore = true;
     };
-
   }, [location, getSubreddit]);
 
   const posts = _.get(subreddit, 'postData.children', []);
   return (
     <Layout>
-      {subreddit.error ? <NoMatchText/> : (
+      {subreddit.error ? (
+        <NoMatchText />
+      ) : (
         posts.map((data: {}, i: number) => <Post data={data} key={i} />)
       )}
     </Layout>

@@ -1,9 +1,12 @@
+import parser from 'html-react-parser';
 import * as _ from 'lodash';
 import React, { useCallback, useEffect } from 'react';
 import Markdown from 'react-markdown';
 import Layout from '../../components/Layout';
 import './Comments.scss';
 import Reply from './Reply/Reply';
+const decode = require('decode-html');
+
 interface IComments {
   location?: any;
   fetchPostComments: (path: any) => void;
@@ -18,6 +21,7 @@ export const Comments = ({
 }: IComments) => {
   const post = _.get(postComments, 'post', []);
   const comments = _.get(postComments, 'comments', []);
+  const embed = _.get(post, 'secure_media_embed', '');
 
   const getPostComments = useCallback(
     (path: string) => {
@@ -48,6 +52,7 @@ export const Comments = ({
         <div className="showcase__selftext">
           <div className="showcase__selftext__body">
             <Markdown source={post.selftext} />
+            { embed && parser(decode(embed.content))}            
           </div>
         </div>
       </div>

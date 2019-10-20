@@ -28,17 +28,16 @@ library.add(
 );
 
 export const Routes = () => (
-
   <BrowserRouter>
     <Switch>
-      <Redirect exact={true} from='/' to='/r/reactjs'/>
+      <Redirect exact={true} from="/" to="/r/reactjs" />
       <Route exact={true} path="/r/:subreddit" component={App} />
       <Route
         exact={true}
         path="/r/:subreddit/comments/:id/:title"
         component={Comments}
       />
-      <Route component={NoMatch}/>
+      <Route component={NoMatch} />
     </Switch>
   </BrowserRouter>
 );
