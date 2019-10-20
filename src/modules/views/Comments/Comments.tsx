@@ -8,11 +8,13 @@ interface IComments {
   location?: any;
   fetchPostComments: (path: any) => void;
   postComments: [];
+  clearComments: () => void;
 }
 export const Comments = ({
   location,
   fetchPostComments,
   postComments,
+  clearComments
 }: IComments) => {
   const post = _.get(postComments, 'post', []);
   const comments = _.get(postComments, 'comments', []);
@@ -30,10 +32,11 @@ export const Comments = ({
       getPostComments(location.pathname);
     }
 
-    return () => {
+    return () => { // componentWillUnmount
       ignore = true;
+      clearComments();
     };
-  }, [getPostComments, location.pathname]);
+  }, [getPostComments, location.pathname, clearComments]);
 
   return (
     <Layout pagination={false}>

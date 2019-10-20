@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { FETCH_POST_COMMENTS } from '../actions/subreddit';
+import { CLEAR_COMMENTS, FETCH_POST_COMMENTS } from '../actions/subreddit';
 import { ASYNC_DONE, ASYNC_START, asyncWrapper } from '../async';
 
 const initialState = {
@@ -9,8 +9,8 @@ const initialState = {
   error: undefined,
 };
 
-export const postComments = handleActions<any>(
-  {
+export const postComments = handleActions<any>({
+    [CLEAR_COMMENTS]: () => initialState,
     [ASYNC_START]: asyncWrapper({
       [FETCH_POST_COMMENTS]: (state: any) => ({ ...state, isLoading: true }),
     }),
