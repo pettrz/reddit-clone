@@ -1,5 +1,5 @@
-import * as _ from 'lodash';
 import parse from 'html-react-parser';
+import * as _ from 'lodash';
 import React, { useCallback, useEffect } from 'react';
 import Markdown from 'react-markdown';
 import Layout from '../../components/Layout';
@@ -23,7 +23,7 @@ export const Comments = ({
   const comments = _.get(postComments, 'comments', []);
   const embed = _.get(post, 'secure_media_embed', '');
   const selftext = _.get(post, 'selftext', '');
-  const decodedEmbded = parse(decode(embed.content))
+  const decodedEmbded = parse(decode(embed.content));
 
   const getPostComments = useCallback(
     (path: string) => {
@@ -53,10 +53,10 @@ export const Comments = ({
         </div>
         <div className="showcase__selftext">
           <div className="showcase__selftext__body">
-            <div style={{ maxWidth: '100%'}}>
-            { selftext && <Markdown source={selftext}/> }
+            <div style={{ maxWidth: '100%' }}>
+              {selftext && <Markdown source={selftext} />}
             </div>
-            { embed && decodedEmbded }
+            {embed && decodedEmbded}
           </div>
         </div>
       </div>

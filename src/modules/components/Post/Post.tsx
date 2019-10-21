@@ -100,8 +100,8 @@ const Post = ({ data }: IPost) => {
             </div>
           )}
           <div className="selftext__body">
-            { selftext && <Markdown source={selftext} />}
-            { embed && decodedEmbed}
+            {selftext && <Markdown source={selftext} />}
+            {embed && decodedEmbed}
           </div>
         </div>
       )}
