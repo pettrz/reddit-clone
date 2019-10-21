@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import parser from 'html-react-parser';
+import parse from 'html-react-parser';
 import _ from 'lodash';
 import 'moment-timezone';
 import React, { useState } from 'react';
@@ -7,7 +7,7 @@ import Markdown from 'react-markdown';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import './Post.scss';
-const decode = require('decode-html');
+const decode = require('unescape');
 
 interface IPost {
   data: any;
@@ -27,10 +27,11 @@ const Post = ({ data }: IPost) => {
   const score = _.get(data.data, 'score', 0);
   const numComments = _.get(data.data, 'num_comments', 0);
   const creationDate = new Date(created * 1000).toISOString();
-  const selfText = _.get(data.data, 'selftext', '');
+  const selftext = _.get(data.data, 'selftext', '');
   const author = _.get(data.data, 'author', '');
   const permaLink = _.get(data.data, 'permalink', '');
   const embed = _.get(data.data, 'secure_media_embed', '');
+  const decodedEmbed = parse(decode(embed.content));
 
   const toggleSelftext = () => {
     const selftextState = selftextExpand ? false : true;
@@ -91,7 +92,7 @@ const Post = ({ data }: IPost) => {
       </div>
       {selftextExpand && (
         <div className="selftext">
-          {selfText && (
+          {selftext && (
             <div className="selftext__title">
               <h1>
                 <i>{author} says...</i>
@@ -99,8 +100,8 @@ const Post = ({ data }: IPost) => {
             </div>
           )}
           <div className="selftext__body">
-            <Markdown source={selfText} />
-            {parser(decode(embed.content))}
+            { selftext && <Markdown source={selftext} />}
+            { embed && decodedEmbed}
           </div>
         </div>
       )}
