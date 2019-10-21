@@ -11,7 +11,7 @@
     "side content ."
     "footer footer footer";
   
-  grid-template-columns: 250px minmax(0, 1fr) 250px;
+  grid-template-columns: 170px 1fr 170px;
   grid-template-rows: auto 1fr auto;
   grid-gap: 10px;
   height: 100vh;
@@ -21,10 +21,10 @@
     margin-bottom: 60px;
   }
   @include respond-below(lg) {
-    grid-template-columns: 200px 1fr 200px;
+    grid-template-columns: 110px 1fr 110px;
   }
   @include respond-below(md) {
-    grid-template-columns: 100px 1fr 100px;
+    grid-template-columns: 40px 1fr 40px;
   }
   @include respond-below(sm) {
     grid-template-areas:

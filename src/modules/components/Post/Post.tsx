@@ -94,9 +94,9 @@ const Post = ({ data }: IPost) => {
         <div className="selftext">
           {selftext && (
             <div className="selftext__title">
-              <h1>
+              <h2>
                 <i>{author} says...</i>
-              </h1>
+              </h2>
             </div>
           )}
           <div className="selftext__body">

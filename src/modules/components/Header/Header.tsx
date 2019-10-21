@@ -38,7 +38,8 @@ const Header = ({ limitHandler, history }: IHeaderProps) => {
         <form onSubmit={onSubmitSubreddit}>
           <input
             id="subreddit"
-            placeholder="Enter subreddit"
+            className="main-header__options__input"
+            placeholder="Search subreddit"
             onChange={onChangeSubreddit}
           />
         </form>

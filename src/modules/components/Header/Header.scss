@@ -16,5 +16,16 @@
     @extend %flex;
     @include align-items(center); 
     margin-top: auto;
+    form { border-right: 2px solid $body-grey;}
+    &__input {
+      background-color: $alt-grey;
+      padding: 10px;
+      border: 0;
+      border-right: 2px solid $alt-grey;
+      color: $background-grey;
+      &::placeholder {
+        color: $alt-spacegrey;
+      };
+    }
   }
 }
