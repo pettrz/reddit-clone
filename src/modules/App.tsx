@@ -29,6 +29,7 @@ export const App = ({ location, subreddit, fetchSubreddit }: any) => {
     };
   }, [location, getSubreddit]);
 
+  console.log(subreddit);
   const posts = _.get(subreddit, 'postData.children', []);
   return (
     <Layout>

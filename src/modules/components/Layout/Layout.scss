@@ -11,12 +11,11 @@
     "side content ."
     "footer footer footer";
   
-  grid-template-columns: 170px 1fr 170px;
+  grid-template-columns: 200px 1fr 200px;
   grid-template-rows: auto 1fr auto;
   grid-gap: 10px;
   height: 100vh;
   margin: 0 50px;
-  max-width: 100%;
   &__pagination {
     margin-bottom: 60px;
   }

@@ -3,20 +3,20 @@
 
 .post-wrapper {
   margin-bottom: 20px;
+  .post-score {
+    max-width: 30px;
+    text-align: right;
+    margin: auto 15px auto 0;
+    &__points {
+      margin: auto 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 39px;
+    }
+  }
   .post {
     position: relative;
-    .post__score {
-      position: absolute;
-      left: -30px;
-      top: 50%;
-      transform: translateY(-50%);
-      &__points {
-        margin: auto 0;
-        font-size: 18px;
-        font-weight: 600;
-        line-height: 39px;
-      }
-    }
+    width: 100%;
 
     .post__container {
       position: relative;
@@ -27,8 +27,8 @@
 
       &__date-posted {
         position: absolute;
-        top: 3px;
-        right: 3px;
+        top: 5px;
+        right: 5px;
         font-size: 14px;
       }
 
@@ -64,18 +64,16 @@
         }
         &__lower {
           margin-top: auto;
-          font-size: 12px;
           &__btn {
             background: none;
             margin-right: 15px;
             border: 0;
-            letter-spacing: 1.4;
             color: $alt-spacegrey;
             font-weight: 900;
             text-transform: uppercase;
+            font-size: 0.75rem;
             span {
               margin-left: 5px;
-              font-size: 0.8em;
             }
           }
         }

@@ -38,11 +38,11 @@ const Post = ({ data }: IPost) => {
     setSelftextExpand(selftextState);
   };
   return (
-    <div className="post-wrapper">
-      <div className="post row">
-        <div className="post__score">
-          <div className="post__score__points">{score}</div>
-        </div>
+    <div className="post-wrapper row">
+      <div className="post-score">
+        <div className="post-score__points">{score}</div>
+      </div>
+      <div className="post">
         <div className="post__container row">
           <div className="post__container__date-posted">
             <Moment
