@@ -24,6 +24,8 @@ Looking to fix. I recommend cloning the project instead.
 - [ ] Starting page /r/all and slightly adjusted
 - [ ] Adjust thumbnail depending on post type
 - [ ] Add types to redux props
+- [ ] Add tests
+- [ ] Add CI
 
 
 
