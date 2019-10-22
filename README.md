@@ -26,6 +26,7 @@ Looking to fix. I recommend cloning the project instead.
 - [ ] Add types to redux props
 - [ ] Add tests
 - [ ] Add CI
+- [ ] Add loading indications for fetched content
 
 
 
