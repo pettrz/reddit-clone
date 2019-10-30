@@ -16,11 +16,11 @@ Looking to fix. I recommend cloning the project instead.
 
 ## To do
 - [ ] Fix routing for netlify (or move to github pages)
-- [ ] Replace "reddit clone" header with current subreddit
 - [ ] Respond accordingly when subreddit doesn't exist
+- [X] Show which subreddit is being browsed
 - [ ] Add points to comments
-- [ ] Adjusts format points. 1100 = 1.1k
-- [ ] Adjust expand depending on post type. Disable expand for links
+- [X] Adjusts format points. 1100 = 1.1k
+- [X] Adjust expand depending on post type. Disable expand for links
 - [ ] Starting page /r/all and slightly adjusted
 - [ ] Adjust thumbnail depending on post type
 - [ ] Add types to redux props
