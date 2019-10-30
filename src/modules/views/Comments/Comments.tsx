@@ -44,7 +44,6 @@ export const Comments = ({
       clearComments();
     };
   }, [getPostComments, location.pathname, clearComments]);
-
   return (
     <Layout pagination={false}>
       <div className="showcase">

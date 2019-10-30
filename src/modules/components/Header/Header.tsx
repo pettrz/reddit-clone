@@ -9,9 +9,12 @@ interface IHeaderProps {
   subredditHandler: (name: any) => void;
   history: any;
   subreddit: any;
+  postComments: any;
 }
-const Header = ({ limitHandler, history, subreddit }: IHeaderProps) => {
-  const currentSub = _.get(subreddit, 'currentSub', '');
+const Header = ({ limitHandler, history, subreddit, postComments }: IHeaderProps) => {
+  const currentSub = 
+    _.get(subreddit, 'currentSub', '') || 
+    '/R/'+_.get(postComments.post, 'subreddit', '');
   const [limit, setLimit] = useState<number>(10);
   const [visitSub, setVisitSub] = useState<string>(currentSub);
 
@@ -31,12 +34,12 @@ const Header = ({ limitHandler, history, subreddit }: IHeaderProps) => {
     setLimit(e.target.value);
     limitHandler(e);
   };
-  console.log(subreddit)
+
   return (
     <header className="main-header points-offset">
       <div className="main-header__title">
         <Link to={currentSub}>
-          <h2>{currentSub}</h2>
+          <h3>{currentSub}</h3>
         </Link>
       </div>
       <div className="main-header__options">

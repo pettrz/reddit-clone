@@ -3,7 +3,7 @@
 
 .wrapper {
   font-family: sans-serif;
-  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+  font-size: calc(12px + 1vw);
   text-align: center;
   display: grid;
   grid-template-areas:
