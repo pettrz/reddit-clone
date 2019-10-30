@@ -7,7 +7,7 @@ Note: React Router 4 isn't working with netlify out of the box. So browsing by e
 Looking to fix. I recommend cloning the project instead.
 
 
-## Technologies/librares:
+## Technologies/libraries:
 * Typescript/Javascript as web language
 * ReactJs for view rendering
 * ReduxJs for state management
