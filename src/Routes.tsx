@@ -10,7 +10,7 @@ import {
   faComments,
   faLink,
   faMinusSquare,
-  faPlusSquare
+  faPlusSquare,
 } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
@@ -30,7 +30,7 @@ library.add(
   faComments,
   faMinusSquare,
   faPlusSquare,
-  faLink
+  faLink,
 );
 
 export const Routes = () => (

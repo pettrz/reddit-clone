@@ -40,7 +40,8 @@ const Post = ({ data }: IPost) => {
     setSelftextExpand(selftextState);
   };
 
-  const convertScore = (value: number) => value >= 1000 ? (value/1000).toFixed(1) + 'K' : value;
+  const convertScore = (value: number) =>
+    value >= 1000 ? (value / 1000).toFixed(1) + 'K' : value;
   const voteAlert = () => alert('This feature will be added later on!');
 
   return (
@@ -48,13 +49,11 @@ const Post = ({ data }: IPost) => {
       <div className="post row">
         <div className="post__score">
           <span onClick={voteAlert}>
-            <FontAwesomeIcon icon='angle-up' size='lg'/>
+            <FontAwesomeIcon icon="angle-up" size="lg" />
           </span>
-          <div className="post__score__points">
-            {convertScore(score)}
-          </div>
+          <div className="post__score__points">{convertScore(score)}</div>
           <span onClick={voteAlert}>
-            <FontAwesomeIcon icon='angle-down' size='lg'/>
+            <FontAwesomeIcon icon="angle-down" size="lg" />
           </span>
         </div>
         <div className="post__container row">
@@ -67,7 +66,12 @@ const Post = ({ data }: IPost) => {
             />
           </div>
           <Link to={permaLink} className="post__container__thumbnail">
-            <img height="80" width="80" src={thumbnailDisplay} alt="Thumbnail for the post" />
+            <img
+              height="80"
+              width="80"
+              src={thumbnailDisplay}
+              alt="Thumbnail for the post"
+            />
           </Link>
           <div className="post__container__body">
             <div className="post__container__body__upper">
@@ -77,7 +81,7 @@ const Post = ({ data }: IPost) => {
               </div>
             </div>
             <div className="post__container__body__lower">
-              { isSelf ?
+              {isSelf ? (
                 <button
                   className="post__container__body__lower__btn"
                   onClick={toggleSelftext}
@@ -89,21 +93,17 @@ const Post = ({ data }: IPost) => {
                   />
                   <span>EXPAND</span>
                 </button>
-                :
-                <a 
+              ) : (
+                <a
                   className="post__container__body__lower__btn"
-                  href={url} 
-                  target="_blank" 
+                  href={url}
+                  target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <FontAwesomeIcon
-                    title="Open link"
-                    icon="link"
-                    size="sm"
-                  />
+                  <FontAwesomeIcon title="Open link" icon="link" size="sm" />
                   <span>Open link</span>
                 </a>
-              }
+              )}
               <Link
                 to={permaLink}
                 className="post__container__body__lower__btn"

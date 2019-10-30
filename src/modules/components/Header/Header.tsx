@@ -11,10 +11,15 @@ interface IHeaderProps {
   subreddit: any;
   postComments: any;
 }
-const Header = ({ limitHandler, history, subreddit, postComments }: IHeaderProps) => {
-  const currentSub = 
-    _.get(subreddit, 'currentSub', '') || 
-    '/R/'+_.get(postComments.post, 'subreddit', '');
+const Header = ({
+  limitHandler,
+  history,
+  subreddit,
+  postComments,
+}: IHeaderProps) => {
+  const currentSub =
+    _.get(subreddit, 'currentSub', '') ||
+    '/R/' + _.get(postComments.post, 'subreddit', '');
   const [limit, setLimit] = useState<number>(10);
   const [visitSub, setVisitSub] = useState<string>(currentSub);
 
@@ -26,7 +31,7 @@ const Header = ({ limitHandler, history, subreddit, postComments }: IHeaderProps
     e.preventDefault();
     const pathname = `/r/${visitSub}`;
     history.push({
-      pathname
+      pathname,
     });
   };
 
