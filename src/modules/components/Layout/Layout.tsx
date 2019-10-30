@@ -72,7 +72,7 @@ export const Layout = ({
         {children}
 
         {pagination && (
-          <div className="wrapper__pagination">
+          <div className="wrapper__pagination points-offset">
             {before && (
               <ButtonLink type="pagination" to={beforeLink}>
                 Prev

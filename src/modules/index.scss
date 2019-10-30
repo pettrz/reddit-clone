@@ -23,11 +23,10 @@ pre {
 
 button {
   cursor: pointer;
+  padding: 0;
 }
 
-iframe {
-  border: none;
-}
+iframe { border: none; }
 
 a {
   text-decoration: none;
@@ -38,6 +37,9 @@ a {
   }
 }
 
+.points-offset {
+  margin-left: 55px;
+}
 .row {
   @extend %flex;
   @include flex-direction(row);

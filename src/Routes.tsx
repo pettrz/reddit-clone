@@ -2,10 +2,13 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import {
   faAngleDown,
+  faAngleUp,
   faArrowDown,
+  faArrowUp,
   faBookOpen,
   faComment,
   faComments,
+  faLink,
   faMinusSquare,
   faPlusSquare,
 } from '@fortawesome/free-solid-svg-icons';
@@ -19,12 +22,15 @@ import Comments from './modules/views/Comments';
 library.add(
   fab,
   faArrowDown,
+  faAngleUp,
   faAngleDown,
+  faArrowUp,
   faBookOpen,
   faComment,
   faComments,
   faMinusSquare,
   faPlusSquare,
+  faLink,
 );
 
 export const Routes = () => (

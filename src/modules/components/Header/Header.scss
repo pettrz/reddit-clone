@@ -4,17 +4,20 @@
   @extend %flex;
   @include justify-content(space-between);
   margin-top: 10vh;
+  &__title,
+  &__options { 
+    @extend %flex;
+    @include align-items(flex-end); 
+  }
   &__title {
-    h2 {
+    h3 {
       color: $main-blue;
       margin: 0;
       text-transform: uppercase;
-      line-height: 39px;
+      line-height: 22px;
     }
   }
   &__options {
-    @extend %flex;
-    @include align-items(center); 
     margin-top: auto;
     form { border-right: 2px solid $body-grey;}
     &__input {
@@ -22,9 +25,9 @@
       padding: 10px;
       border: 0;
       border-right: 2px solid $alt-grey;
-      color: $background-grey;
+      color: $alt-spacegrey;
       &::placeholder {
-        color: $alt-spacegrey;
+        color: $main-white;
       };
     }
   }

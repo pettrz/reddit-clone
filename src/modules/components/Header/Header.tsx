@@ -1,3 +1,4 @@
+import * as _ from 'lodash';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../Button/Button';
@@ -7,17 +8,28 @@ interface IHeaderProps {
   limitHandler: (e: any) => void;
   subredditHandler: (name: any) => void;
   history: any;
+  subreddit: any;
+  postComments: any;
 }
-const Header = ({ limitHandler, history }: IHeaderProps) => {
+const Header = ({
+  limitHandler,
+  history,
+  subreddit,
+  postComments,
+}: IHeaderProps) => {
+  const currentSub =
+    _.get(subreddit, 'currentSub', '') ||
+    '/R/' + _.get(postComments.post, 'subreddit', '');
   const [limit, setLimit] = useState<number>(10);
-  const [subreddit, setSubreddit] = useState<string>('');
+  const [visitSub, setVisitSub] = useState<string>(currentSub);
 
   const onChangeSubreddit = (e: any) => {
-    setSubreddit(e.target.value);
+    setVisitSub(e.target.value);
+    return;
   };
   const onSubmitSubreddit = (e: any) => {
     e.preventDefault();
-    const pathname = `/r/${subreddit}`;
+    const pathname = `/r/${visitSub}`;
     history.push({
       pathname,
     });
@@ -27,11 +39,12 @@ const Header = ({ limitHandler, history }: IHeaderProps) => {
     setLimit(e.target.value);
     limitHandler(e);
   };
+
   return (
-    <header className="main-header">
+    <header className="main-header points-offset">
       <div className="main-header__title">
-        <Link to="/">
-          <h2>Reddit Clone</h2>
+        <Link to={currentSub}>
+          <h3>{currentSub}</h3>
         </Link>
       </div>
       <div className="main-header__options">

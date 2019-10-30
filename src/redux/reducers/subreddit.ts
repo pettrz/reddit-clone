@@ -5,6 +5,7 @@ import { ASYNC_DONE, ASYNC_START, asyncWrapper } from '../async';
 const initialState = {
   isLoading: false,
   postData: [],
+  currentSub: '',
   error: undefined,
 };
 
@@ -27,6 +28,7 @@ export const subreddit = handleActions<any>(
             isLoading: false,
             error: false,
             postData: action.payload.data.data,
+            currentSub: action.payload.trigger.payload.sub,
           };
         }
       },
