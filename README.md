@@ -1,5 +1,5 @@
 # reddit-clone
-Simple reddit clone | learning hooks | On hold -
+reddit clone | unfinished | inactive -
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/a3f84ab9-31a7-4234-af33-96b52e5c2d82/deploy-status)](https://app.netlify.com/sites/radreddit/deploys)
 
